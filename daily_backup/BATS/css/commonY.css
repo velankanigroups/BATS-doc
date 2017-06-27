@@ -1,0 +1,88 @@
+.header{
+	height: 70px;
+    width: 100%;
+    border-radius: 0;
+    background: #000000;
+    z-index: 100;
+    position: fixed;
+}
+
+.logo{	
+	height: 50px;
+    width: 150px; 
+    position: relative;
+    top: 12px;
+    /* right: 90px; */
+}
+
+.login{
+	color: #fff;
+    font-size: 20px;
+    float: right;
+    top: 24px;
+    /* right: -50px; */
+    border: none !important;
+    position: relative;
+}
+
+.sidebar-nav .nav>li:last-child{
+	padding-bottom:0px !impotant;
+}
+
+.sidebar-nav .nav>li{
+border-bottom: 1px solid #000;
+}
+/* 
+.listPadding{
+	padding:0px !important;
+} */
+
+.nav {
+	    width: 100% !important;
+}
+
+.ulPadding{
+	padding:0px !important;
+}
+
+/* .liPadding{
+	    padding: 6px 20px !important;
+}
+ */
+
+.activePadding{
+	padding:0px !important;
+}
+
+.listElePadding {
+	padding:12px !important;
+}
+
+.sidebar-nav .nav>li>a ,.sidebar-nav .nav>li>a{
+	color:#000000!important;
+	padding:0px!important;
+}
+
+.sidebar-nav .nav>li>a:hover{color:#25A0CA !important;background:none}
+
+.sidebar-nav .nav>li>a.active{
+background:#F8F8F8!important;
+}
+ .sidebar-nav .nav>li>a.active .colmenu1{
+	width: 10px;
+    height: 54px;
+    background: #25A0CA;
+} 
+
+.colmenu1{
+	width: 10px;
+    height: 54px;
+    background: #ffffff;
+    /* color:#ffffff; */
+}
+
+.sidebar-nav .navbar-default{
+ background:#ffffff !important;
+ }
+ 
+ 

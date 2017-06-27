@@ -1,0 +1,964 @@
+<div class="col-sm-10">
+	<h2 class="heading_title">Travel Desk</h2>
+	<div class="row">
+		<div class="col-sm-12">
+			<h4 class="search_heading">Trip List</h4>
+		</div>
+	</div>
+	<div class="search_customer_results">
+		<div class="row">
+			<div class="col-sm-12">
+				<!-- search driver -->
+				<div class="row makeMB20">
+					<div class="col-sm-12">
+						<h3>Search Trip<span class="help-txt">(based on phone or name)</span></h3>
+						<input type="text" class="form-control" ng-model="searchTrip" placeholder="Search by name or phone number"/>
+					</div>
+				</div>
+				<!-- ./search driver -->
+				<div class="row triplist_head">
+					<div class="col-sm-2">
+						<label>Trip-id</label>
+					</div>
+					<div class="col-sm-2">
+						<label>Vehicle No</label>
+					</div>
+					<div class="col-sm-2">
+						<label>Driver Name</label>
+					</div>
+					<div class="col-sm-2">
+						<label>Driver Contact</label>
+					</div>
+					<!-- <div class="col-sm-2">
+						<label>Driver Image</label>
+					</div>
+					<div class="col-sm-2">
+						<label>Edit</label>					
+						<label>Delete</label>
+					</div> -->
+					
+				</div>
+				
+<!-- listing trip -->
+				<div class="row">
+					<div class="col-sm-12" id="displayList">
+						<ul id="accordion1" class="driverlist" >
+														
+							<li> <!-- ng-repeat="driverdetail in driverlist | driverFilter:searchDriver" -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+									<div class="row">
+									
+									<!-- Trip ID -->
+											<div class="col-sm-2">
+												<label>Trip-id</label>
+												<!-- <p>{{driverdetail.name}}</p> -->
+											</div>
+											<!-- Trip ID -->
+											<!-- Vehicle no -->
+											<div class="col-sm-2">
+												<label>Vehicle No</label>
+												
+											</div>
+											<!-- Vehicle No -->
+											<!-- Driver Name -->
+											<div class="col-sm-2">
+												<label>Driver Name</label>
+											</div>
+											<!-- Driver Name -->
+											<!-- Driver Contact -->
+											<div class="col-sm-2">
+												<label>Driver Contact</label>
+											</div>
+											<!-- Driver Contact -->
+											
+											<!-- image of driver/avatar -->
+											<div class="col-sm-2">
+												<img
+													class="img-responsive img-circle img-thumbnail iconImageSm" />
+											</div>
+											<!-- ./image of driver/avatar -->
+											
+											<!-- Driver Edit -->
+											<div class="col-sm-2">
+												<p class="alignIcons"> <!-- ng-click="fetchdriverInfo(driverdetail.driver_id)" -->
+													<a href="#" ng-click="mymap()" class="edit_icon"
+														 data-toggle="modal"
+														data-target="#updateTripModal"><i class="fa fa-pencil"></i></a>
+													<a href="#" class="delete_icon"
+														ng-click="deleteDriver(driverdetail.driver_id)"><i
+														class="fa fa-trash"></i></a>
+													<a  ng-click="mymap()" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#driverdata"></a>
+												</p>
+												
+											</div>
+											<!-- Driver Delete -->
+										</div>
+									</div>
+									<div id="driverdata" class="collapse panel-body">
+										<div class="row">
+											<div class="col-sm-2">
+												<img class="img-responsive img-thumbnail fixWidthHeight" src=""/>
+											</div>
+											<div class="col-sm-10">
+												<div class="row mb10">
+													<div class="col-sm-4">
+													<label>Driver Id</label>
+													<p class="mb10">Driver Id</p>												
+													</div>
+													<div class="col-sm-4">
+													<label>Driver Contact</label>
+													<p class="mb10">Driver Contact</p>
+													</div>
+													<div class="col-sm-4">
+													<label>Organization Id</label>
+													<p class="mb10">Organization Id</p>
+													</div>
+												</div>
+											
+											</div>
+										</div>
+										<hr>
+										<label>Trip Deatail</label>
+										<div class="row">
+											<div class="col-sm-6" align="center">
+												<label>Start Time</label>
+												<p class="mb10">Start Time</p>												
+											</div>
+											<div class="col-sm-6" align="center">
+												<label>End Time</label>
+												<p class="mb10">End Time</p>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-6" align="center">
+											<label>Address</label>
+											</div>
+											<div class="col-sm-6" align="center">
+											<label>Address</label>
+											</div>
+										</div>
+										<br>
+									<div id="map" style="width:100%;height:200px">
+									
+									</div>
+									<br>
+									<div class="row">
+										<div class="col-sm-6" align="center">
+										<label>Customer</label>
+										</div>
+										<div class="col-sm-6" align="center">
+										<label>Customer Count</label>
+										</div>
+									</div>
+										
+										
+									</div>
+								</div>
+							</li>
+							<li> <!-- ng-repeat="driverdetail in driverlist | driverFilter:searchDriver" -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<div class="row">
+											
+											<!-- Trip ID -->
+											<div class="col-sm-2">
+												<label>Trip-id</label>
+												<!-- <p>{{driverdetail.name}}</p> -->
+											</div>
+											<!-- Trip ID -->
+											<!-- Vehicle no -->
+											<div class="col-sm-2">
+												<label>Vehicle No</label>
+												
+											</div>
+											<!-- Vehicle No -->
+											<!-- Driver Name -->
+											<div class="col-sm-2">
+												<label>Driver Name</label>
+											</div>
+											<!-- Driver Name -->
+											<!-- Driver Contact -->
+											<div class="col-sm-2">
+												<label>Driver Contact</label>
+											</div>
+											<!-- Driver Contact -->
+											
+											<!-- image of driver/avatar -->
+											<div class="col-sm-2">
+												<img
+													class="img-responsive img-circle img-thumbnail iconImageSm" />
+											</div>
+											<!-- ./image of driver/avatar -->
+											
+											<!-- Driver Edit -->
+											<div class="col-sm-2">
+												<p class="alignIcons">
+													<a href="#" class="edit_icon"
+														ng-click="fetchdriverInfo(driverdetail.driver_id)" data-toggle="modal"
+														data-target="#updateUserModal"><i class="fa fa-pencil"></i></a>
+													<a href="#" class="delete_icon"
+														ng-click="deleteDriver(driverdetail.driver_id)"><i
+														class="fa fa-trash"></i></a>
+													<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#driverdata2"></a>
+												</p>
+											</div>
+											<!-- Driver Delete -->
+										</div>
+									</div>
+									<div id="driverdata2" class="collapse">
+									<p>Driver details</p>
+									</div>
+								</div>
+							</li>
+							<li> <!-- ng-repeat="driverdetail in driverlist | driverFilter:searchDriver" -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<div class="row">
+											
+											<!-- Trip ID -->
+											<div class="col-sm-2">
+												<label>Trip-id</label>
+												<!-- <p>{{driverdetail.name}}</p> -->
+											</div>
+											<!-- Trip ID -->
+											<!-- Vehicle no -->
+											<div class="col-sm-2">
+												<label>Vehicle No</label>
+												
+											</div>
+											<!-- Vehicle No -->
+											<!-- Driver Name -->
+											<div class="col-sm-2">
+												<label>Driver Name</label>
+											</div>
+											<!-- Driver Name -->
+											<!-- Driver Contact -->
+											<div class="col-sm-2">
+												<label>Driver Contact</label>
+											</div>
+											<!-- Driver Contact -->
+											
+											<!-- image of driver/avatar -->
+											<div class="col-sm-2">
+												<img
+													class="img-responsive img-circle img-thumbnail iconImageSm" />
+											</div>
+											<!-- ./image of driver/avatar -->
+											
+											<!-- Driver Edit -->
+											<div class="col-sm-2">
+												<p class="alignIcons">
+													<a href="#" class="edit_icon"
+														ng-click="fetchdriverInfo(driverdetail.driver_id)" data-toggle="modal"
+														data-target="#updateUserModal"><i class="fa fa-pencil"></i></a>
+													<a href="#" class="delete_icon"
+														ng-click="deleteDriver(driverdetail.driver_id)"><i
+														class="fa fa-trash"></i></a>
+												</p>
+											</div>
+											<!-- Driver Delete -->
+										</div>
+									</div>
+								</div>
+							</li>
+							<li> <!-- ng-repeat="driverdetail in driverlist | driverFilter:searchDriver" -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<div class="row">
+											
+											<!-- Trip ID -->
+											<div class="col-sm-2">
+												<label>Trip-id</label>
+												<!-- <p>{{driverdetail.name}}</p> -->
+											</div>
+											<!-- Trip ID -->
+											<!-- Vehicle no -->
+											<div class="col-sm-2">
+												<label>Vehicle No</label>
+												
+											</div>
+											<!-- Vehicle No -->
+											<!-- Driver Name -->
+											<div class="col-sm-2">
+												<label>Driver Name</label>
+											</div>
+											<!-- Driver Name -->
+											<!-- Driver Contact -->
+											<div class="col-sm-2">
+												<label>Driver Contact</label>
+											</div>
+											<!-- Driver Contact -->
+											
+											<!-- image of driver/avatar -->
+											<div class="col-sm-2">
+												<img
+													class="img-responsive img-circle img-thumbnail iconImageSm" />
+											</div>
+											<!-- ./image of driver/avatar -->
+											
+											<!-- Driver Edit -->
+											<div class="col-sm-2">
+												<p class="alignIcons">
+													<a href="#" class="edit_icon"
+														ng-click="fetchdriverInfo(driverdetail.driver_id)" data-toggle="modal"
+														data-target="#updateUserModal"><i class="fa fa-pencil"></i></a>
+													<a href="#" class="delete_icon"
+														ng-click="deleteDriver(driverdetail.driver_id)"><i
+														class="fa fa-trash"></i></a>
+												</p>
+											</div>
+											<!-- Driver Delete -->
+										</div>
+									</div>
+								</div>
+							</li>
+							
+							
+							<li> <!-- ng-repeat="driverdetail in driverlist | driverFilter:searchDriver" -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<div class="row">
+											
+											<!-- Trip ID -->
+											<div class="col-sm-2">
+												<label>Trip-id</label>
+												<!-- <p>{{driverdetail.name}}</p> -->
+											</div>
+											<!-- Trip ID -->
+											<!-- Vehicle no -->
+											<div class="col-sm-2">
+												<label>Vehicle No</label>
+												
+											</div>
+											<!-- Vehicle No -->
+											<!-- Driver Name -->
+											<div class="col-sm-2">
+												<label>Driver Name</label>
+											</div>
+											<!-- Driver Name -->
+											<!-- Driver Contact -->
+											<div class="col-sm-2">
+												<label>Driver Contact</label>
+											</div>
+											<!-- Driver Contact -->
+											
+											<!-- image of driver/avatar -->
+											<div class="col-sm-2">
+												<img
+													class="img-responsive img-circle img-thumbnail iconImageSm" />
+											</div>
+											<!-- ./image of driver/avatar -->
+											
+											<!-- Driver Edit -->
+											<div class="col-sm-2">
+												<p class="alignIcons">
+													<a href="#" class="edit_icon"
+														ng-click="fetchdriverInfo(driverdetail.driver_id)" data-toggle="modal"
+														data-target="#updateUserModal"><i class="fa fa-pencil"></i></a>
+													<a href="#" class="delete_icon"
+														ng-click="deleteDriver(driverdetail.driver_id)"><i
+														class="fa fa-trash"></i></a>
+												</p>
+											</div>
+											<!-- Driver Delete -->
+										</div>
+									</div>
+								</div>
+							</li>
+							<li> <!-- ng-repeat="driverdetail in driverlist | driverFilter:searchDriver" -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<div class="row">
+											
+											<!-- Trip ID -->
+											<div class="col-sm-2">
+												<label>Trip-id</label>
+												<!-- <p>{{driverdetail.name}}</p> -->
+											</div>
+											<!-- Trip ID -->
+											<!-- Vehicle no -->
+											<div class="col-sm-2">
+												<label>Vehicle No</label>
+												
+											</div>
+											<!-- Vehicle No -->
+											<!-- Driver Name -->
+											<div class="col-sm-2">
+												<label>Driver Name</label>
+											</div>
+											<!-- Driver Name -->
+											<!-- Driver Contact -->
+											<div class="col-sm-2">
+												<label>Driver Contact</label>
+											</div>
+											<!-- Driver Contact -->
+											
+											<!-- image of driver/avatar -->
+											<div class="col-sm-2">
+												<img
+													class="img-responsive img-circle img-thumbnail iconImageSm" />
+											</div>
+											<!-- ./image of driver/avatar -->
+											
+											<!-- Driver Edit -->
+											<div class="col-sm-2">
+												<p class="alignIcons">
+													<a href="#" class="edit_icon"
+														ng-click="fetchdriverInfo(driverdetail.driver_id)" data-toggle="modal"
+														data-target="#updateUserModal"><i class="fa fa-pencil"></i></a>
+													<a href="#" class="delete_icon"
+														ng-click="deleteDriver(driverdetail.driver_id)"><i
+														class="fa fa-trash"></i></a>
+												</p>
+											</div>
+											<!-- Driver Delete -->
+										</div>
+									</div>
+								</div>
+							</li>
+							
+							<li> <!-- ng-repeat="driverdetail in driverlist | driverFilter:searchDriver" -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<div class="row">
+											
+											<!-- Trip ID -->
+											<div class="col-sm-2">
+												<label>Trip-id</label>
+												<!-- <p>{{driverdetail.name}}</p> -->
+											</div>
+											<!-- Trip ID -->
+											<!-- Vehicle no -->
+											<div class="col-sm-2">
+												<label>Vehicle No</label>
+												
+											</div>
+											<!-- Vehicle No -->
+											<!-- Driver Name -->
+											<div class="col-sm-2">
+												<label>Driver Name</label>
+											</div>
+											<!-- Driver Name -->
+											<!-- Driver Contact -->
+											<div class="col-sm-2">
+												<label>Driver Contact</label>
+											</div>
+											<!-- Driver Contact -->
+											
+											<!-- image of driver/avatar -->
+											<div class="col-sm-2">
+												<img
+				 									class="img-responsive img-circle img-thumbnail iconImageSm" />
+											</div>
+											<!-- ./image of driver/avatar -->
+											
+											<!-- Driver Edit -->
+											<div class="col-sm-2">
+												<p class="alignIcons">
+													<a href="#" class="edit_icon"
+														ng-click="fetchdriverInfo(driverdetail.driver_id)" data-toggle="modal"
+														data-target="#updateUserModal"><i class="fa fa-pencil"></i></a>
+													<a href="#" class="delete_icon"
+														ng-click="deleteDriver(driverdetail.driver_id)"><i
+														class="fa fa-trash"></i></a>
+												</p>
+											</div>
+											<!-- Driver Delete -->
+										</div>
+									</div>
+								</div>
+							</li>
+							
+							
+														
+						</ul>						
+						<!-- <p ng-show="(driverlist| driverFilter:searchDriver).length==0" class="help-block error-help">No drivers available for this search criteria !!!</p>
+						<p ng-show="!driverlist.length" class="help-warning">No driver created yet</p> -->
+					</div>
+				</div>
+				<!-- ./listing driver -->
+			</div>
+		</div>
+		<a href="#" class="btn btn-primary add_new_trip " data-toggle="modal"
+			data-target="#createTripModal" ng-click="mymap()"> <i class="fa fa-plus fa-3x"></i></a>
+			<!-- <div id="map" style="width:100%;height:200px">
+									
+									</div> -->
+	</div>
+</div>
+
+
+<!-- Create trip modal -->
+	<div id="createTripModal" class="modal fade" role="dialog" data-backdrop="static">
+		<div class="modal-dialog modal-lg tdmodal">
+			<div class="modal-content">
+				<div class="iconSection" align="center">
+					<div class="userIcon">
+						<i class="fa fa-taxi fa-2x"></i>
+					</div>
+				</div>
+				<div class="modal-body">
+					<form id="createTripf" name="createTripForm" class="form formInput">
+						<div id="createclose" class="col-sm-2 col-sm-offset-10" align="right">
+							<span class="closeIcon" data-direction="left" data-dismiss="modal"
+								aria-hidden="true">&times;</span>
+					</div>
+						<h1 class="titleHead">Create Trip</h1>
+						<div class="row">
+						<div class="col-sm-12">
+							<div class="row">
+								<div class='col-sm-6'>
+						           <div class="form-group">
+						                <div class='input-group date' id='startTimePicker'>
+						                    <input type='text' class="form-control tripinputheight" placeholder="Start Time" />
+						                    <span class="input-group-addon createtriptime">
+						                        <span class="glyphicon glyphicon-time"></span>
+						                    </span>
+						                </div>
+						           </div>
+						        </div>
+						        <div class="col-sm-6">
+						        	<div class="input-group date" id='endTimePicker'>
+						        		<input type='text' class="form-control tripinputheight" placeholder="End Time"/>
+						        		<span class="input-group-addon createtriptime">
+						        			<span class="glyphicon glyphicon-time"></span>
+						        		</span>
+						        	</div>
+						        </div>
+							</div>
+						</div>
+						</div>
+						<div class="row">
+						<div class="col-sm-12">
+							<div class="row">
+								<div class="col-sm-6">
+								  <div class="form-group">
+										<select class="form-control floatlabel floatlabel_select tripinputheight">
+															<option selected disabled value="">- - Group Name - -</option>
+															<!-- <option selected value="{{driver.country}}" ng-show>{{driver.country}}</option> -->
+										</select>
+								  </div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<select class="form-control floatlabel floatlabel_select tripinputheight">
+											<option selected disabled value="">- - Vehicle No - -</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>
+						<div class="row">
+						<div class="col-sm-12">
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="floatlabeltxt show-hide">Enter Statr Point</label>
+										<input type="text" class="form-control tripinputheight" placeholder="Start Point"/>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="floatlabeltxt show-hide">Enter End Point</label>
+										<input type="text" class="form-control tripinputheight" placeholder="End Point"/>
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>
+						<div class="row">
+						<div class="col-sm-12">
+							<div id="map2" style="width:100%;height:200px"></div>
+						</div>
+						</div>
+						<br>
+						<div class="row">
+						<div class="col-sm-12">
+							<label>Pathway</label>
+							<hr>
+						</div>
+						</div>
+						<div class="row">
+						<div class="col-sm-12">
+						
+							<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="floatlabeltxt show-hide">Select Destionation</label>
+									<input type="text" class="form-control tripinputheight" placeholder="Destination"/>
+								</div>
+							</div>
+							<div class="col-sm-6">
+									<div class="col-sm-6 col-sm-offset-6">
+									<a href="" class="addfields" ng-hide="hide_btn"
+										ng-click="addNewChoice()">Add Customer</a>
+								    </div>
+								<!-- <div class="form-group" align="center">
+									<a class="btn btn-primary addcbtn" id="showAddCust">Add Customer</a>
+								</div> -->
+							</div> 
+							</div>
+							<div class="row">
+								<div class="col-sm-12" data-ng-repeat="group in choices">
+									<div class="panel panel-default">
+										<div class="panel-heading dynamicBlockHeading">
+											 <h3 class="panel-title">Customer {{$index+1}}
+											 <span class="pull-right clickable" data-effect="fadeOut" ng-click="removeChoice($index)"><i class="fa fa-times"></i></span>
+											 </h3>
+                    								<!-- Watch Out: Here We must use the effect name in the data tag-->
+                    						
+										</div>
+										<div class="panel-body dynamicBlockBody">
+											<div class="row">
+												<div class="col-sm-6">
+													<div class="form-group multiple_contact"
+														ng-class="{'has-error':createGroupForm.contact_name{{$index+1}}.$invalid && !createGroupForm.contact_name{{$index+1}}.$pristine}">
+														<label ng-show="group.contact_name"
+															class="floatlabeltxt show-hide">Contact Person
+															Name</label>
+														<div class="row">
+															<div class="col-sm-12">
+																<input type="text" ng-model="group.contact_name"
+																	name="contact_name{{$index+1}}" class="dynamicBlockInput" placeholder="Contact Person Name" ng-minlength="2" ng-maxlength="70" required/>																
+															<p
+															ng-show="createGroupForm.contact_name{{$index+1}}.$error.maxlength"
+															class="help-block dynamicBlockHelp">Name field of max of 70 characters only allowed.</p>
+															<p ng-show="createGroupForm.contact_name{{$index+1}}.$error.minlength"class="help-block  dynamicBlockHelp">Name field of min of 2 character needed.</p>	
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- <div class="col-sm-4">
+													<div class="form-group multiple_contact"
+														ng-class="{'has-error':createGroupForm.contact_email{{$index+1}}.$invalid && !createGroupForm.contact_email{{$index+1}}.$pristine}">
+														<label ng-show="group.contact_email"
+															class="floatlabeltxt show-hide">Contact Person
+															Email</label>
+														<div class="row">
+															<div class="col-sm-12">
+																<input type="text" ng-model="group.contact_email" class="dynamicBlockInput"
+																	name="contact_email{{$index+1}}" placeholder="Contact Person e-mail" 
+																	ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"/>
+																<p ng-show="createGroupForm.contact_email.$invalid && !createGroupForm.contact_email.$pristine" class="help-block dynamicBlockHelp">Enter a valid email.</p>	
+															</div>
+														</div>
+													</div>
+												</div> -->
+												<div class="col-sm-6">
+													<div class="form-group multiple_contact"
+														ng-class="{ 'has-error' : createGroupForm.contact_num{{$index+1}}.$invalid && !createGroupForm.contact_num{{$index+1}}.$pristine}">
+														<label ng-show="group.contact_num"
+															class="floatlabeltxt show-hide">Mobile Number</label>
+														<div class="row">
+															<div class="col-sm-12">
+																<input type="text" ng-model="group.contact_num"  class="dynamicBlockInput"
+																	numbers-only name="contact_num{{$index+1}}"
+																	class="form-control" string-to-number
+																	placeholder="Mobile Number"
+																	ng-minlength="10" ng-maxlength="10" required />
+															</div>
+														</div>
+														<p
+															ng-show="createGroupForm.contact_num{{$index+1}}.$invalid && !createGroupForm.contact_num{{$index+1}}.$pristine"
+															class="help-block dynamicBlockHelp">Enter Valid Mobile Number.</p>
+														<p
+															ng-show="createGroupForm.contact_num{{$index+1}}.$error.minlength && createGroupForm.contact_num{{$index+1}}.$error.maxlength"
+															class="help-block dynamicBlockHelp">Mobile Number max 10 numbers.</p>
+														<!-- <span class="help-block">{{mobstatus}}</span> -->
+													</div>
+												</div>
+											</div>
+											<!-- <div class="row">
+												<div class="col-sm-12">
+													<div class="form-group multiple_contact"
+														ng-class="{ 'has-error' : createGroupForm.contact_desc{{$index+1}}.$invalid && !createGroupForm.contact_desc{{$index+1}}.$pristine }">
+														<label ng-show="group.contact_desc" class="floatlabeltxt show-hide">Description</label>
+														<textarea ng-model="group.contact_desc" name="contact_desc{{$index+1}}" placeholder="Description"
+															class="form-control dynamicBlockText" required></textarea>
+														<p
+															ng-show="createGroupForm.contact_desc{{$index+1}}.$invalid && !createGroupForm.contact_desc{{$index+1}}.$pristine"
+															class="help-block dynamicBlockHelp">Description is required.</p>
+													</div>
+												</div>
+											</div> -->
+										</div>
+									</div>
+									<!-- <a href="" class="remove" ng-show="$last && hide_remove"
+										ng-click="removeChoice()">Remove</a> -->
+								</div>
+							</div>
+							<!-- <div class="row">
+								<div class="col-sm-6 col-sm-offset-6">
+									<a href="" class="addfields" ng-hide="hide_btn"
+										ng-click="addNewChoice()">Add Customer</a>
+								</div>
+							</div> -->
+						</div>
+						</div>
+						<!-- <div id="custList">
+						<div class="row">
+							<div class="col-sm-12">
+							  <label>Customer List</label>
+							  <hr>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="floatlabeltxt show-hide">Customer Name</label>
+											<input type="text" class="form-control" placeholder="Name"/>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="floatlabeltxt show-hide">Customer Contact</label>
+											<input type="text" class="form-control" placeholder="Contact"/>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						</div> -->
+					</form>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+<!-- End Create Trip Modal -->
+
+<!-- Start Update Trip Modal -->
+
+<div id="updateTripModal" class="modal fade" role="dialog" data-backdrop="static">
+		<div class="modal-dialog modal-lg tdmodal">
+			<div class="modal-content">
+				<div class="iconSection" align="center">
+					<div class="userIcon">
+						<i class="fa fa-taxi fa-2x"></i>
+					</div>
+				</div>
+				<div class="modal-body">
+					<form id="updateTripf" name="updateTripForm" class="form formInput">
+						<div id="createclose" class="col-sm-2 col-sm-offset-10" align="right">
+							<span class="closeIcon" data-direction="left" data-dismiss="modal"
+								aria-hidden="true">&times;</span>
+					</div>
+						<h1 class="titleHead">Update Trip</h1>
+						<div class="row">
+						<div class="col-sm-12">
+							<div class="row">
+								<div class='col-sm-6'>
+						           <div class="form-group">
+						                <div class='input-group date' id='startTimePickerU'>
+						                    <input type='text' class="form-control tripinputheight" placeholder="Start Time" />
+						                    <span class="input-group-addon createtriptime">
+						                        <span class="glyphicon glyphicon-time"></span>
+						                    </span>
+						                </div>
+						           </div>
+						        </div>
+						        <div class="col-sm-6">
+						        	<div class="input-group date" id='endTimePickerU'>
+						        		<input type='text' class="form-control tripinputheight" placeholder="End Time"/>
+						        		<span class="input-group-addon createtriptime">
+						        			<span class="glyphicon glyphicon-time"></span>
+						        		</span>
+						        	</div>
+						        </div>
+							</div>
+						</div>
+						</div>
+						<div class="row">
+						<div class="col-sm-12">
+							<div class="row">
+								<div class="col-sm-6">
+								  <div class="form-group">
+										<select class="form-control floatlabel floatlabel_select tripinputheight">
+															<option selected disabled value="">- - Group Name - -</option>
+															<!-- <option selected value="{{driver.country}}" ng-show>{{driver.country}}</option> -->
+										</select>
+								  </div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<select class="form-control floatlabel floatlabel_select tripinputheight">
+											<option selected disabled value="">- - Vehicle No - -</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>
+						<div class="row">
+						<div class="col-sm-12">
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="floatlabeltxt show-hide">Enter Statr Point</label>
+										<input type="text" class="form-control tripinputheight" placeholder="Start Point"/>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="floatlabeltxt show-hide">Enter End Point</label>
+										<input type="text" class="form-control tripinputheight" placeholder="End Point"/>
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>
+						<div class="row">
+						<div class="col-sm-12">
+							<div id="map3" style="width:100%;height:200px"></div>
+						</div>
+						</div>
+						<br>
+						<div class="row">
+						<div class="col-sm-12">
+							<label>Pathway</label>
+							<hr>
+						</div>
+						</div>
+						<div class="row">
+						<div class="col-sm-12">
+							<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="floatlabeltxt show-hide">Select Destionation</label>
+									<input type="text" class="form-control tripinputheight" placeholder="Destination"/>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="col-sm-6 col-sm-offset-6">
+									<a href="" class="addfields" ng-hide="hide_btn"
+										ng-click="addNewChoice()">Add Customer</a>
+								    </div>
+								<!-- <div class="form-group" align="center">
+									<a class="btn btn-primary addcbtn" id="showAddCustU">Add Customer</a>
+								</div> -->
+							</div>
+							</div>
+						</div>
+						</div>
+						
+						<div class="row">
+								<div class="col-sm-12" data-ng-repeat="group in choices">
+									<div class="panel panel-default">
+										<div class="panel-heading dynamicBlockHeading">
+											 <h3 class="panel-title">Customer {{$index+1}}
+											 <span class="pull-right clickable" data-effect="fadeOut" ng-click="removeChoice($index)"><i class="fa fa-times"></i></span>
+											 </h3>
+                    								<!-- Watch Out: Here We must use the effect name in the data tag-->
+                    						
+										</div>
+										<div class="panel-body dynamicBlockBody">
+											<div class="row">
+												<div class="col-sm-6">
+													<div class="form-group multiple_contact"
+														ng-class="{'has-error':createGroupForm.contact_name{{$index+1}}.$invalid && !createGroupForm.contact_name{{$index+1}}.$pristine}">
+														<label ng-show="group.contact_name"
+															class="floatlabeltxt show-hide">Contact Person
+															Name</label>
+														<div class="row">
+															<div class="col-sm-12">
+																<input type="text" ng-model="group.contact_name"
+																	name="contact_name{{$index+1}}" class="dynamicBlockInput" placeholder="Contact Person Name" ng-minlength="2" ng-maxlength="70" required/>																
+															<p
+															ng-show="createGroupForm.contact_name{{$index+1}}.$error.maxlength"
+															class="help-block dynamicBlockHelp">Name field of max of 70 characters only allowed.</p>
+															<p ng-show="createGroupForm.contact_name{{$index+1}}.$error.minlength"class="help-block  dynamicBlockHelp">Name field of min of 2 character needed.</p>	
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- <div class="col-sm-4">
+													<div class="form-group multiple_contact"
+														ng-class="{'has-error':createGroupForm.contact_email{{$index+1}}.$invalid && !createGroupForm.contact_email{{$index+1}}.$pristine}">
+														<label ng-show="group.contact_email"
+															class="floatlabeltxt show-hide">Contact Person
+															Email</label>
+														<div class="row">
+															<div class="col-sm-12">
+																<input type="text" ng-model="group.contact_email" class="dynamicBlockInput"
+																	name="contact_email{{$index+1}}" placeholder="Contact Person e-mail" 
+																	ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"/>
+																<p ng-show="createGroupForm.contact_email.$invalid && !createGroupForm.contact_email.$pristine" class="help-block dynamicBlockHelp">Enter a valid email.</p>	
+															</div>
+														</div>
+													</div>
+												</div> -->
+												<div class="col-sm-6">
+													<div class="form-group multiple_contact"
+														ng-class="{ 'has-error' : createGroupForm.contact_num{{$index+1}}.$invalid && !createGroupForm.contact_num{{$index+1}}.$pristine}">
+														<label ng-show="group.contact_num"
+															class="floatlabeltxt show-hide">Mobile Number</label>
+														<div class="row">
+															<div class="col-sm-12">
+																<input type="text" ng-model="group.contact_num"  class="dynamicBlockInput"
+																	numbers-only name="contact_num{{$index+1}}"
+																	class="form-control" string-to-number
+																	placeholder="Mobile Number"
+																	ng-minlength="10" ng-maxlength="10" required />
+															</div>
+														</div>
+														<p
+															ng-show="createGroupForm.contact_num{{$index+1}}.$invalid && !createGroupForm.contact_num{{$index+1}}.$pristine"
+															class="help-block dynamicBlockHelp">Enter Valid Mobile Number.</p>
+														<p
+															ng-show="createGroupForm.contact_num{{$index+1}}.$error.minlength && createGroupForm.contact_num{{$index+1}}.$error.maxlength"
+															class="help-block dynamicBlockHelp">Mobile Number max 10 numbers.</p>
+														<!-- <span class="help-block">{{mobstatus}}</span> -->
+													</div>
+												</div>
+											</div>
+											<!-- <div class="row">
+												<div class="col-sm-12">
+													<div class="form-group multiple_contact"
+														ng-class="{ 'has-error' : createGroupForm.contact_desc{{$index+1}}.$invalid && !createGroupForm.contact_desc{{$index+1}}.$pristine }">
+														<label ng-show="group.contact_desc" class="floatlabeltxt show-hide">Description</label>
+														<textarea ng-model="group.contact_desc" name="contact_desc{{$index+1}}" placeholder="Description"
+															class="form-control dynamicBlockText" required></textarea>
+														<p
+															ng-show="createGroupForm.contact_desc{{$index+1}}.$invalid && !createGroupForm.contact_desc{{$index+1}}.$pristine"
+															class="help-block dynamicBlockHelp">Description is required.</p>
+													</div>
+												</div>
+											</div> -->
+										</div>
+									</div>
+									<!-- <a href="" class="remove" ng-show="$last && hide_remove"
+										ng-click="removeChoice()">Remove</a> -->
+								</div>
+							</div>
+						<!-- <div id="custList">
+						<div class="row">
+							<div class="col-sm-12">
+							  <label>Customer List</label>
+							  <hr>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="floatlabeltxt show-hide">Customer Name</label>
+											<input type="text" class="form-control tripinputheight" placeholder="Name"/>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="floatlabeltxt show-hide">Customer Contact</label>
+											<input type="text" class="form-control tripinputheight" placeholder="Contact"/>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						</div> -->
+					</form>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+
+

@@ -1,0 +1,66 @@
+<div class="col-sm-12">
+	<div class="row header_bats">
+		<div class="col-sm-10">
+			<div class="row">
+				<div class="col-sm-12">
+					<label class="custom_label">Dashboard</label>
+				</div>
+			</div>
+			<ul class="nav nav-tabs managedivH">
+				<li ng-class="{ active: isSet(1) }"><a href
+					ng-click="setTab(1)">Tracker</a></li>
+				<li ng-class="{ active: isSet(2) }"><a href
+					ng-click="setTab(2)">Trip</a></li>
+				<li ng-class="{ active: isSet(3) }"><a href 
+				ng-click="setTab(3)">Driver</a></li>
+				<li ng-class="{ active: isSet(4) }"><a href 
+				ng-click="setTab(4)">Vehicle</a></li>
+			</ul>
+			
+			
+			
+		</div>
+		<div class="col-sm-2 borderLeft">
+			<div ng-include src="'/admin/subMenu'"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12 pad0">
+			<div class="tab-content">
+				<!-- <div class="bgloading" ng-show="httpLoading">
+					<div class="bigbar">
+						<h1 class="titleClass">loading!...</h1>
+					</div>
+				</div> -->
+				<div ng-show="isSet(1)">
+					<div class="row">
+						<div class="col-sm-4">
+							<!-- <div id="TestDonut" style="width: 175px; height: 175px;></div>
+						
+						
+						</div>
+						<div class="col-sm-8">
+						
+						</div> -->
+						<div style="text-align:center;">
+						<svg class="svgWidth">
+				            <circle cx="80" cy="80" r="50" fill='#6495ed' stroke-width="20" stroke='#eee'/ >
+				        </svg>
+				        </div>
+					
+					</div>
+				
+				
+				
+				</div>
+				<div ng-show="isSet(2)">
+				</div>
+				<div ng-show="isSet(3)">
+				</div>
+				<div ng-show="isSet(4)">
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>

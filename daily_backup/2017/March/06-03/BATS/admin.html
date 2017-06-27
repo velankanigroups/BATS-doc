@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="batsAdminHome">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- <link rel="icon" href="../../favicon.ico"> -->
+<title>BATS v1.4</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" type="text/css"
+	href="../assets/bootstrap-3.3.5/css/bootstrap.min.css">
+
+<!-- font awesome for icons-->
+<link rel="stylesheet" type="text/css"
+	href="../assets/font-awesome-4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+
+
+<!-- Reset CSS -->
+<link rel="stylesheet" type="text/css" href="../css/reset.css">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" type="text/css" href="../css/nav.css">
+<!-- <link rel="stylesheet" type="text/css" href="css/content.css"> -->
+<link rel="stylesheet" type="text/css" href="../css/carousel.css">
+<link rel="stylesheet" type="text/css" href="../css/commonY.css">
+<link rel="stylesheet" type="text/css" href="../css/commonG.css">
+<link rel="stylesheet" type="text/css" href="../css/dashboard.css">
+
+
+<link rel="stylesheet" type="text/css"
+	href="../assets/sweetalert/sweetalert.css">
+
+<!-- Material Design Calendar -->
+<link rel='stylesheet prefetch' href='../css/angular-material.css'>
+<!-- Select Filter -->
+<link rel="stylesheet" type="text/css"
+	href="../assets/select_filter/select2.css">
+<link rel="stylesheet" type="text/css"
+	href="../assets/select_filter/select2-bootstrap.css">
+<link rel="stylesheet" type="text/css"
+	href="../assets/datepicker/bootstrap-datetimepicker.css">
+<link rel="stylesheet" type="text/css" href="../css/admin.css">
+
+<!-- Media Screens -->
+ <!--<link rel='stylesheet' media='screen and (min-width: 1920px)' href='../css/ExtraLargeScreen.css' />
+<link rel='stylesheet' media='screen and (min-width: 701px) and (max-width: 900px)' href='css/medium.css' />
+<link rel='stylesheet' media='screen and (min-width: 701px) and (max-width: 900px)' href='css/medium.css' /> -->
+<style>
+/* @media screen and (min-width: 1280px) and (max-width:1280px) {
+   #map_section,#nearbyId {
+    position: fixed;
+    top: 8.5%;
+    height: 88.9%;
+    width: 84%;
+}
+ }
+ @media screen and (min-width: 1920px) and (max-width:1920px) {
+   #map_section,#nearbyId {
+    position: fixed;
+    top: 7.8%;
+    height: 89.9%;
+    width: 84%;
+}
+ } */
+</style>
+</head>
+<body class="adminBody" ng-controller="AdminController" ng-cloak>
+
+	<div ng-controller="AlarmNotificationsControllerAdmin">
+
+		<!-- <nav class="navbar header">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="col-xs-2">
+						<img src="../images/logo-new-bats-white.png" alt="bydesign_logo" class="logo"/>
+					</div>
+					<div class="col-xs-8" style="text-align:right">
+						<div class="nav notify-row">
+						<ul class="top-menu">
+							travel desk bar start
+			                  <li id="trvel_desk_bar">
+			                  <a href="#" ng-click="userinfo()">  
+			                  <i class="fa fa-user" style="color:#fcb322" aria-hidden="true"></i></a>
+			                  </li>
+		                    	trvel desk bar end
+							notification start
+		                   notification dropdown start
+		                   <li id="header_notification_bar" class="dropdown">
+		                       <a data-toggle="dropdown" class="dropdown-toggle" href="#" ng-click="hideNotifyCount()">
+		                          <i class="fa fa-bell" style="color:#fcb322" aria-hidden="true"></i>
+		                           <span class="badge bg-warning">{{notifyLength}}</span>
+		                       </a>
+		                       <ul class="dropdown-menu extended notification">
+		                           <div class="notify-arrow notify-arrow-yellow"></div>
+		                           <h5 ng-if="noNotification" class="no_notifications">No Notifications Available</h5> 
+		                           <span ng-if="showNotification">
+		                           <li>
+		                               <p class="yellow">You have {{notifyLength}} new notifications</p>
+		                           </li>
+		                           <li ng-repeat="showNotify in notifyStatus">
+		                               <a href="#" ng-click="showNotifyModal(showNotify)" data-toggle="modal" data-target="#showNotificationModal">
+		                                   <span class="label label-danger custom-label-danger">{{showNotify.alarm_type_One}}</span>
+		                                   There is an {{showNotify.alarm_type_Two}} for {{showNotify.vehicle_num}} on 
+		                                   <mydate>{{showNotify.ts | date:'dd/MM/yyyy hh:mm a'}}</mydate>.
+		                               </a>
+		                           </li>
+		                           <li ng-if="viewMoreNotify">
+		                               <a href="/admin/alarm" style="text-align:center">
+		                                   <span>View</span>
+		                               </a>
+		                           </li>
+		                           </span>
+		                       </ul>
+		                   </li>
+		                   notification dropdown end
+					</ul>
+					</div>
+					</div>
+					<div class="col-xs-2">
+						<a href="" class="logout lead" ng-controller="logoutAdminUser"
+												ng-click="logoutAdminSubmit()">Logout</a>
+						<a href="" class="login" data-toggle="modal" data-target="#loginModal">Login</a>
+			    	</div>
+			    </div>
+			 </div>
+		</div>
+	</nav>
+ -->
+
+		<!--================= Nav Header Starts =================-->
+		<!-- <nav class="navbar navbar_home">
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-9">
+					<div class="object">
+						<img src="../images/car_logo_active.png" alt="car_logo" /> <span
+							class="logo_Title">Bydesign Automobile Tracking System</span>
+					</div>
+				</div>
+				<div class="col-sm-3">
+				<div class="col-sm-5">
+				<div class="nav notify-row"> 
+				
+                <ul class="top-menu">
+                
+                	travel desk bar start
+		                  <li id="trvel_desk_bar">
+		                  <a href="#" ng-click="userinfo()">  
+		                  <i class="fa fa-user" style="color:#fcb322" aria-hidden="true"></i></a>
+		                  </li>
+                     trvel desk bar end
+                    
+                    
+                    
+                    notification start
+                    notification dropdown start
+                    <li id="header_notification_bar" class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#" ng-click="hideNotifyCount()">
+                           <i class="fa fa-bell" style="color:#fcb322" aria-hidden="true"></i>
+                            <span class="badge bg-warning">{{notifyLength}}</span>
+                        </a>
+                        <ul class="dropdown-menu extended notification">
+                            <div class="notify-arrow notify-arrow-yellow"></div>
+                            <h5 ng-if="noNotification" class="no_notifications">No Notifications Available</h5> 
+                            <span ng-if="showNotification">
+                            <li>
+                                <p class="yellow">You have {{notifyLength}} new notifications</p>
+                            </li>
+                            <li ng-repeat="showNotify in notifyStatus">
+                                <a href="#" ng-click="showNotifyModal(showNotify)" data-toggle="modal" data-target="#showNotificationModal">
+                                    <span class="label label-danger custom-label-danger">{{showNotify.alarm_type_One}}</span>
+                                    There is an {{showNotify.alarm_type_Two}} for {{showNotify.vehicle_num}} on 
+                                    <mydate>{{showNotify.ts | date:'dd/MM/yyyy hh:mm a'}}</mydate>.
+                                </a>
+                            </li>
+                            <li ng-if="viewMoreNotify">
+                                <a href="/admin/alarm" style="text-align:center">
+                                    <span>View More</span>
+                                </a>
+                            </li>
+                            </span>
+                        </ul>
+                    </li>
+                    notification dropdown end
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>  notification end
+            </div>
+            <div class="col-sm-7">
+            <a href="" class="logout" ng-controller="logoutAdminUser"	ng-click="logoutAdminSubmit()"><i class="fa fa-sign-out"></i>
+            <span>Logout</span></a>
+            </div>
+				</div>
+			</div>
+		</div>
+	</nav> -->
+
+
+
+		<!--==================== Notification Modal ===================-->
+		<div class="modal fade" id="showNotificationModal" role="dialog"
+			data-backdrop="static">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="iconSection" align="center">
+						<div class="userIcon">
+							<i class="fa fa-bell fa-3x" aria-hidden="true"></i>
+						</div>
+					</div>
+					<div class="modal-body">
+						<form class="form formInput">
+							<div class="col-sm-2 col-sm-offset-10" align="right">
+								<span class="closeIcon" data-direction="left"
+									data-dismiss="modal" aria-hidden="true">&times;</span>
+							</div>
+							<h1 class="titleHead">Notification Details</h1>
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label class="notificationtxt">Vehicle Number</label>
+												<h5 class="notify_values">{{notifyModalValues.vehicle_num}}</h5>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label class="notificationtxt">Alarm Type</label>
+												<!-- <h5 class="notify_values">{{notifyAlarmStatus}}</h5> -->
+												<h5 class="notify_values"
+													ng-if="notifyModalValues.alarm_type == '0' ">Panic
+													Alarm</h5>
+												<h5 class="notify_values"
+													ng-if="notifyModalValues.alarm_type == '1' ">Temper
+													Sim Alarm</h5>
+												<h5 class="notify_values"
+													ng-if="notifyModalValues.alarm_type == '2' ">Temper
+													Top Alarm</h5>
+												<h5 class="notify_values"
+													ng-if="notifyModalValues.alarm_type == '3' ">Battery
+													Alarm</h5>
+												<h5 class="notify_values"
+													ng-if="notifyModalValues.alarm_type == '4' ">Overspeed
+													Alarm</h5>
+												<h5 class="notify_values"
+													ng-if="notifyModalValues.alarm_type == '5' ">Geofence
+													Alarm</h5>
+												<h5 class="notify_values"
+													ng-if="notifyModalValues.alarm_type == '6' ">Sanity
+													Alarm</h5>
+												<h5 class="notify_values"
+													ng-if="notifyModalValues.alarm_type == '7' ">Power
+													Interrupt Alarm</h5>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label class="notificationtxt">Time</label>
+												<h5 class="notify_values">
+													<mydate>{{notifyModalValues.ts | date:'dd/MM/yyyy
+													hh:mm a'}}</mydate>
+												</h5>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label class="notificationtxt">Speed</label>
+												<h5 class="notify_values">{{notifyModalValues.Velocity}}
+													Km/hr</h5>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="form-group">
+												<label class="notificationtxt">Location</label> <img
+													src="../images/loading_icon.gif" class="loadingImage"
+													ng-if="!address.length" />
+												<h5 class="notify_values" ng-if="addressFound">{{address}}</h5>
+												<h5 class="notify_values" ng-if="addressNotFound">
+													Address not found click this <a
+														href="http://maps.google.com/?q={{latObj}},{{lngObj}}"
+														target="_blank">link</a> to see the location
+												</h5>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--================= Content Starts =================-->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-2">
+					<div class="sidebar-nav">
+						<div class="navbar navbar-default" role="navigation">
+							<div
+								class="navbar-collapse collapse sidebar-navbar-collapse ulPadding">
+								<ul class="nav navbar-nav" track-active>
+									<li><a class="logo" href="#"> <img
+											src="../images/menu/logo.png" alt="">
+									</a></li>
+									<li ng-click="menuPos=14"><a
+												ng-class="{ active: activePath=='/admin/dashboard' }"
+												href="/admin/dashboard">
+													<div class="row">
+														<div class="col-sm-2">
+															<div class="colmenu1"></div>
+														</div>
+														<div class="col-sm-3 listElePadding">
+															<img
+																ng-src="{{menuPos==14?'../images/menu/dashboard_active.png':'../images/menu/dashboard.png'}}"
+																alt="bydesign_logo" class="sidebar_icons" />
+														</div>
+														<div class="col-sm-7 listElePadding">
+															<p>dashboard</p>
+														</div>
+													</div>
+											</a></li>
+									<li ng-click="menuPos=0"><a
+										ng-class="{ active: activePath=='/admin/map' }"
+										href="/admin/map">
+											<div class="row">
+												<div class="col-sm-2">
+													<div class="colmenu1"></div>
+												</div>
+												<div class="col-sm-3 listElePadding">
+													<img
+														ng-src="{{menuPos==0?'../images/menu/A_map_active.png':'../images/menu/A_map.png'}}"
+														alt="bydesign_logo" class="sidebar_icons" />
+													<!-- <i class="fa fa-map"></i> -->
+												</div>
+												<div class="col-sm-7 listElePadding">
+													<p>Live Tracking</p>
+												</div>
+											</div>
+									</a></li>
+									<li ng-click="menuPos=15"><a
+										ng-class="{ active: activePath=='/admin/replayRoute' }"
+										href="/admin/replayRoute">
+											<div class="row">
+												<div class="col-sm-2">
+													<div class="colmenu1"></div>
+												</div>
+												<div class="col-sm-3 listElePadding">
+													<img
+														ng-src="{{menuPos==15?'../images/menu/replay_active.png':'../images/menu/replay.png'}}"
+														alt="bydesign_logo" class="sidebar_icons" />
+													<!-- <i class="fa fa-history"></i> -->
+												</div>
+												<div class="col-sm-7 listElePadding">
+													<p>Replay Route</p>
+												</div>
+											</div>
+									</a></li>
+									<li ng-click="menuPos=1"><a
+										ng-class="{ active: activePath=='/admin/history' }"
+										href="/admin/history">
+											<div class="row">
+												<div class="col-sm-2">
+													<div class="colmenu1"></div>
+												</div>
+												<div class="col-sm-3 listElePadding">
+													<img
+														ng-src="{{menuPos==1?'../images/menu/A_vehicle-history_active.png':'../images/menu/A_vehicle-history.png'}}"
+														alt="bydesign_logo" class="sidebar_icons" />
+													<!-- <i class="fa fa-history"></i> -->
+												</div>
+												<div class="col-sm-7 listElePadding">
+													<p>Travel Route History</p>
+												</div>
+											</div>
+									</a></li>
+									<li ng-click="menuPos=2"><a
+										ng-class="{ active: activePath=='/admin/alarm' }"
+										href="/admin/alarm">
+											<div class="row">
+												<div class="col-sm-2">
+													<div class="colmenu1"></div>
+												</div>
+												<div class="col-sm-3 listElePadding">
+													<img
+														ng-src="{{menuPos==2?'../images/menu/A_vehicle-alarm_active.png':'../images/menu/A_vehicle-alarm.png'}}"
+														alt="bydesign_logo" class="sidebar_icons" />
+													<!-- <i class="fa fa-bell"></i> -->
+												</div>
+												<div class="col-sm-7 listElePadding">
+													<p>Events History</p>
+												</div>
+											</div>
+									</a></li>
+									<li ng-click="menuPos=3"><a
+										ng-class="{ active: activePath=='/admin/latest_location' }"
+										href="/admin/latest_location">
+											<div class="row">
+												<div class="col-sm-2">
+													<div class="colmenu1"></div>
+												</div>
+												<div class="col-sm-3 listElePadding">
+													<img
+														ng-src="{{menuPos==3?'../images/menu/A_latest-located-spot_active.png':'../images/menu/A_latest-located-spot.png'}}"
+														alt="bydesign_logo" class="sidebar_icons" />
+													<!-- <i class="fa fa-location-arrow"></i> -->
+												</div>
+												<div class="col-sm-7 listElePadding">
+													<p>Latest Located Spot</p>
+												</div>
+											</div>
+									</a></li>
+									<li ng-click="menuPos=4"><a
+										ng-class="{ active: activePath=='/admin/min_max_speed' }"
+										href="/admin/min_max_speed">
+											<div class="row">
+												<div class="col-sm-2">
+													<div class="colmenu1"></div>
+												</div>
+												<div class="col-sm-3 listElePadding">
+
+													<img
+														ng-src="{{menuPos==4?'../images/menu/A_speedometer_active.png':'../images/menu/A_speedometer.png'}}"
+														alt="bydesign_logo" class="sidebar_icons" />
+													<!-- <i class="fa fa-tachometer"></i> -->
+												</div>
+												<div class="col-sm-7 listElePadding">
+													<p>Speedometer</p>
+												</div>
+											</div>
+									</a></li>
+									<li ng-click="menuPos=5"><a
+										ng-class="{ active: activePath=='/admin/max_kilometer' }"
+										href="/admin/max_kilometer">
+											<div class="row">
+												<div class="col-sm-2">
+													<div class="colmenu1"></div>
+												</div>
+												<div class="col-sm-3 listElePadding">
+													<img
+														ng-src="{{menuPos==5?'../images/menu/A_kilometer-travelled_active.png':'../images/menu/A_kilometer-travelled.png'}}"
+														alt="bydesign_logo" class="sidebar_icons" />
+													<!-- <i class="fa fa-level-up"></i> -->
+												</div>
+												<div class="col-sm-7 listElePadding">
+													<p>Kilometers Covered</p>
+												</div>
+											</div>
+									</a></li>
+									<!-- <li><a
+											ng-class="{ active: activePath=='/admin/analytics' }"
+											href="/admin/analytics">
+												<div class="row">
+													<div class="col-sm-3">
+														<i class="fa fa-pie-chart"></i>
+													</div>
+													<div class="col-sm-9">
+														<p>Automobile Analytics</p>
+													</div>
+												</div>
+										</a></li> -->
+									<li ng-click="menuPos=6"><a
+										ng-class="{ active: activePath=='/admin/nearby_devices' }"
+										href="/admin/nearby_devices">
+											<div class="row">
+												<div class="col-sm-2">
+													<div class="colmenu1"></div>
+												</div>
+												<div class="col-sm-3 listElePadding">
+													<img
+														ng-src="{{menuPos==6?'../images/menu/A_nearby-vehicles_active.png':'../images/menu/A_nearby-vehicles.png'}}"
+														alt="bydesign_logo" class="sidebar_icons" />
+													<!-- <i class="fa fa-map-marker"></i> -->
+												</div>
+												<div class="col-sm-7 listElePadding">
+													<p>Nearby Vehicles</p>
+												</div>
+											</div>
+									</a></li>
+									<li>
+										<div class="row expand">
+											<div class="col-sm-2">
+												<div class="colmenu1"></div>
+											</div>
+											<div class="col-sm-3 listElePadding">
+												<img id="settings_icon" src="../images/menu/settings.png"
+													alt="bydesign_logo" class="sidebar_icons" />
+												<!-- <i class="fa fa-map-marker"></i> -->
+											</div>
+											<div class="col-sm-7 listElePadding">
+												<p class="settings_text">
+													Settings<span class="right-arrow" style="padding-left: 60px;">+</span>
+												</p>
+											</div>
+										</div>
+										
+										<ul class="settingsDetail" track-active>
+											<li ng-click="menuPos=7"><a
+												ng-class="{ active: activePath=='/admin/group' }"
+												href="/admin/group">
+													<div class="row">
+														<div class="col-sm-2">
+															<div class="colmenu1"></div>
+														</div>
+														<div class="col-sm-3 listElePadding">
+															<img
+																ng-src="{{menuPos==7?'../images/menu/A_manage-group_active.png':'../images/menu/A_manage-group.png'}}"
+																alt="bydesign_logo" class="sidebar_icons" />
+															<!-- <i class="fa fa-cog"></i> -->
+														</div>
+														<div class="col-sm-7 listElePadding">
+															<p>Manage Group</p>
+														</div>
+													</div>
+											</a></li>
+											<li ng-click="menuPos=8"><a
+												ng-class="{ active: activePath=='/admin/user' }"
+												href="/admin/user">
+													<div class="row">
+														<div class="col-sm-2">
+															<div class="colmenu1"></div>
+														</div>
+														<div class="col-sm-3 listElePadding">
+															<img
+																ng-src="{{menuPos==8?'../images/menu/A_manage-user_active.png':'../images/menu/A_manage-user.png'}}"
+																alt="bydesign_logo" class="sidebar_icons" />
+															<!-- <i class="fa fa-user"></i> -->
+														</div>
+														<div class="col-sm-7 listElePadding">
+															<p>Manage User</p>
+														</div>
+													</div>
+											</a></li>
+											<li ng-click="menuPos=9"><a
+												ng-class="{ active: activePath=='/admin/device' }"
+												href="/admin/device">
+													<div class="row">
+														<div class="col-sm-2">
+															<div class="colmenu1"></div>
+														</div>
+														<div class="col-sm-3 listElePadding">
+															<img
+																ng-src="{{menuPos==9?'../images/menu/A-manage-device_active.png':'../images/menu/A-manage-device.png'}}"
+																alt="bydesign_logo" class="sidebar_icons" />
+															<!-- <i class="fa fa-truck"></i> -->
+														</div>
+														<div class="col-sm-7 listElePadding">
+															<p>Manage Device</p>
+														</div>
+													</div>
+											</a></li>
+											<li ng-click="menuPos=10"><a
+												ng-class="{ active: activePath=='/admin/driver' }"
+												href="/admin/driver">
+													<div class="row">
+														<div class="col-sm-2">
+															<div class="colmenu1"></div>
+														</div>
+														<div class="col-sm-3 listElePadding">
+															<img
+																ng-src="{{menuPos==10?'../images/menu/A_manage-driver_active.png':'../images/menu/A_manage-driver.png'}}"
+																alt="bydesign_logo" class="sidebar_icons" />
+															<!-- <i><img src="../images/driver.png" class="iconImage"/></i> -->
+														</div>
+														<div class="col-sm-7 listElePadding">
+															<p>Manage Driver</p>
+														</div>
+													</div>
+											</a></li>
+											<li ng-click="menuPos=11"><a
+												ng-class="{ active: activePath=='/admin/tduser' }"
+												href="/admin/tduser">
+													<div class="row">
+														<div class="col-sm-2">
+															<div class="colmenu1"></div>
+														</div>
+														<div class="col-sm-3 listElePadding">
+															<img
+																ng-src="{{menuPos==11?'../images/menu/A_tdu-active.png':'../images/menu/A_tdu-inactive.png'}}"
+																alt="bydesign_logo" class="sidebar_icons" />
+															<!-- <i class="fa fa-key"></i> -->
+														</div>
+														<div class="col-sm-7 listElePadding">
+															<p>Manage Traveldesk User</p>
+														</div>
+													</div>
+											</a></li>
+											<li ng-click="menuPos=13"><a
+												ng-class="{ active: activePath=='/admin/changePwd' }"
+												href="/admin/changePwd">
+													<div class="row">
+														<div class="col-sm-2">
+															<div class="colmenu1"></div>
+														</div>
+														<div class="col-sm-3 listElePadding">
+															<img
+																ng-src="{{menuPos==13?'../images/menu/Admin-change-password_active.png':'../images/menu/Admin-change-password.png'}}"
+																alt="bydesign_logo" class="sidebar_icons" />
+														</div>
+														<div class="col-sm-7 listElePadding">
+															<p>Change Password</p>
+														</div>
+													</div>
+											</a></li>
+											
+										</ul>
+									</li>
+									<!-- <li><a href="#" ng-controller="logoutAdminUser"
+										ng-click="logoutAdminSubmit()">
+											<div class="row">
+												<div class="col-sm-3">
+													<i class="fa fa-sign-out"></i>
+												</div>
+												<div class="col-sm-9">
+													<p>Logout</p>
+												</div>
+											</div>
+									</a></li> -->
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-10 pad0">
+					<!-- angular templating -->
+					<!-- this is where content will be injected -->
+					<div ng-view ng-init="getGrouplist()"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--================= Content Ends =================-->
+
+
+	<!-- Change Password Modal -->
+	<!-- Change Password -->
+	<div id="changePwdAdmin" class="modal modal_login"
+		data-backdrop="static" ng-controller="changePwdformAdmin">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="iconSection" align="center">
+					<div class="userIcon">
+						<i class="fa fa-key fa-3x"></i>
+					</div>
+				</div>
+				<div class="modal-body">
+					<div class="col-sm-2 col-sm-offset-10" align="right">
+						<span class="closeIcon" data-direction="left" data-dismiss="modal"
+							aria-hidden="true" ng-click="reset()">&times;</span>
+					</div>
+					<!-- <div class="row">
+						<div class="col-sm-6 col-sm-offset-3">
+							Change Password
+							<h1 class="titleHead">Change Password</h1>
+							<form name="changePwd" class="formInput" id="changePwdFrm">
+								<div class="control-group">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-12 controls">
+												<label ng-show="newpwd" class="floatlabeltxt show-hide">Enter
+													New Password</label> <input type="password" ng-model="newpwd"
+													class="form-control new_pwd" name="new_pd"
+													placeholder="Enter New Password" ng-change="hidePasswordMismatch()" password-validate required>											
+												<span class='help-inline' ng-show='changePwd.newpwd.$valid'>
+													<i class='icon-ok'></i>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="control-group">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-12 controls">
+												<label ng-show="repwd && newpwd"
+													class="floatlabeltxt show-hide">Re-Enter New
+													Password</label> <input type="password" ng-model="repwd"
+													ng-show="newpwd" class="form-control confirm_pwd"
+													name="confirm_pd" same-as='newpwd'
+													placeholder="Re-Enter New Password" repassword-validate
+													required> <span class='help-inline'
+													ng-show='changePwd.repwd.$valid'> <i class='icon-ok'></i>
+												</span> <span class="mismatch" ng-show="isMismatch">Password
+													Mistmatch</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div ng-hide="newpwd && repwd">
+									<ul class="helplist">
+										<li>At least <strong>one letter</strong></li>
+										<li>At least <strong>one number</strong></li>
+										<li>At least <strong>8 characters long</strong></li>
+									</ul>
+								</div>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-sm-6 col-sm-offset-3" align="center">
+											<button class="btn btn-primary chngbtn"
+												ng-disabled="!changePwd.$valid"
+												ng-click="pwdChangeAdmin(repwd)">Submit</button>
+										</div>
+									</div>
+								</div>
+
+							</form>
+
+							./Change Password
+						</div>
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ./Change Password -->
+	<!-- Change Password Modal Ends -->
+
+
+
+
+
+	<!-- Bootstrap core JavaScript ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript"
+		src="../assets/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../assets/angular.min.js"></script>
+	<script type="text/javascript" src="../assets/ngStorage.js"></script>
+	<script type="text/javascript" src="../assets/angular-route.js"></script>
+	<script
+		src="https://maps.google.com/maps/api/js?key=AIzaSyBcEEu_khjPcPFhnRlHBJ4IHzXZaa-mNb4&libraries=placeses,visualization,drawing,geometry,places&region=IN"></script>
+	<!-- <script	src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=drawing"></script> -->
+	<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry,places&ext=.js"></script> -->
+	<script type="text/javascript"
+		src="http://www.geocodezip.com/scripts/v3_epoly.js"></script>
+	<script type="text/javascript" src="../assets/angular/ng-map.js"></script>
+
+	<script type="text/javascript" src="../js/app.js"></script>
+	<script type="text/javascript" src="../js/global.js"></script>
+	<script type="text/javascript" src="../js/loginController.js"></script>
+	<script type="text/javascript" src="../js/common/commonFactory.js"></script>
+	<script type="text/javascript" src="../js/common/commonService.js"></script>
+	
+	<!-- <script type="text/javascript" src="../assets/js/scrolltable.js"></script> -->
+	<script src="../assets/angular/angular-animate.js"></script>
+	<script src='../assets/angular/angular-google-maps.js'></script>
+
+	<script src='../assets/angular/lodash.min.js'></script>
+	<script src="../assets/angular/ui-bootstrap-tpls-0.14.3.js"></script>
+	<!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> -->
+	<script src="../assets/angular/angular-simple-logger.js"></script>
+	<script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="http://code.highcharts.com/highcharts-more.js"></script>
+
+	<script
+		src="https://rawgit.com/pablojim/highcharts-ng/master/src/highcharts-ng.js"></script>
+
+
+	<script type="text/javascript" src="../js/admin/mapController.js"></script>
+	<script type="text/javascript" src="../js/admin/mapModalController.js"></script>
+	<script type="text/javascript" src="../js/admin/vehicle_history.js"></script>
+	<script type="text/javascript" src="../js/admin/replay_history.js"></script>
+	<script src="../js/admin/vehicle_alarm.js"></script>
+	<script src="../js/admin/speedometer.js"></script>
+	<script type="text/javascript"
+		src="../js/admin/LatestLocationController.js"></script>
+	<script type="text/javascript"
+		src="../js/admin/MinMaxSpeedController.js"></script>
+	<script type="text/javascript" src="../js/admin/MaxKmController.js"></script>
+	<script type="text/javascript" src="../js/admin/analytics.js"></script>
+	<script type="text/javascript" src="../js/admin/nearbydevice.js"></script>
+	<script type="text/javascript" src="../js/admin/groupController.js"></script>
+	<script type="text/javascript" src="../js/admin/userController.js"></script>
+	<script type="text/javascript" src="../js/admin/deviceController.js"></script>
+	<script type="text/javascript" src="../js/admin/driverController.js"></script>
+	<script type="text/javascript"
+		src="../js/admin/alarmNotificationsController.js"></script>
+	<script type="text/javascript" src="../js/admin/directive.js"></script>
+	<script type="text/javascript" src="../js/admin/filter.js"></script>
+	<script type="text/javascript" src="../js/admin/TDeskController.js"></script>
+	<script type="text/javascript" src="../js/admin/dashboardController.js"></script>
+	<script type="text/javascript" src="../assets/sweetalert/sweetalert-dev.js"></script>
+	<!-- Material Design Calendar -->
+	<script
+		src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js'></script>
+	<script
+		src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js'></script>
+	<script src="../assets/angular/angular-material.js"></script>
+	<script
+		src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js'></script>
+	<!-- ./Material Design Calendar -->
+	<script src='../assets/datepicker/bootstrap-datetimepicker.js'></script>
+
+	<script type="text/javascript">
+		function resetlabel() {
+			$('.floatlabeltxt').addClass("show-hide ng-hide");
+		}
+		function showPrev() {
+			//on click of reset in group update form 
+			$('#show1').show();//show home form
+			$('#show2').hide();//hide map form
+		}
+		$(function() {
+			$(".expand").on(
+					"click",
+					function() {
+						$(this).next().slideToggle(200);
+						$expand = $('.right-arrow');
+
+						if ($expand.text() == "+") {
+							$("#settings_icon").attr('src',
+									'../images/menu/settings_active.png');
+							$(".settings_text").css("color", "#ffffff");
+							$expand.text("-");
+						} else {
+							$("#settings_icon").attr('src',
+									'../images/menu/settings.png');
+							$(".settings_text").css("color", "#657679");
+							$expand.text("+");
+						}
+					});
+		});
+	</script>
+
+
+
+</body>
+</html>

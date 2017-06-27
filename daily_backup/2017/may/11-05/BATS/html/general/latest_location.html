@@ -1,0 +1,115 @@
+<div class="col-sm-12">
+	<div class="bgloading" ng-show="httpLoading">
+		<div class="bigbar">
+			<h1 class="titleClass">loading!...</h1>
+		</div>
+	</div>
+	<!-- Header for Latest Location-->
+	<div class="row header_bats">
+		<div class="col-sm-10">
+			<div class="row">
+				<div class="col-sm-12">
+					<label class="custom_label">Select Group</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3" id="clearTextGroup">
+					<select id="selectGroup" class="form-control" name="groupList"
+						ng-model="groupname" ng-change="fetchDevicelist(groupname)">
+						<option ng-if="groupList.length" value="" selected disabled
+							class="disable_select">-- Select Group - -</option>
+						<option ng-if="!groupList.length" selected disabled>No
+							Group Available</option>
+						<option ng-repeat="option in groupList|orderBy:'gname'" value="{{ option.gid }}">{{option.gname}}</option>
+					</select>
+				</div>
+			</div>
+		</div><div class="col-sm-2 borderLeft">
+			<div ng-include src="'/general/subMenu'"></div>
+		</div><div class="col-sm-2"></div>
+	</div>
+	<!-- Header for Latest Location-->
+	<div class="row">
+		<div class="col-sm-12 pad0">
+			<div class="map_wrap" data-tap-disabled="true">
+				<ng-map id="latestLocationId">
+					<!-- center="{{mapos.lat}},{{mapos.long}}" zoom="{{mapos.zoom}}" center="[20.5937, 78.9629]"-->
+				<!-- 	styles="[{'featureType':'administrative','elementType':'labels.text.fill','stylers':[{'color':'#444444'}]},
+											{'featureType':'landscape','elementType':'all','stylers':[{'color':'#f2f2f2'}]},
+											{'featureType':'landscape','elementType':'labels','stylers':[{'visibility':'on'}]},
+											{'featureType':'poi','elementType':'all','stylers':[{'visibility':'off'}]},
+											{'featureType':'poi','elementType':'geometry.fill','stylers':[{'color':'#bee4f4'},{'visibility':'on'}]},
+											{'featureType':'poi','elementType':'labels','stylers':[{'visibility':'on'},{'hue':'#ff0000'}]},
+											{'featureType':'road','elementType':'all','stylers':[{'saturation':-100},{'lightness':45}]},
+											{'featureType':'road','elementType':'labels','stylers':[{'visibility':'on'},{'hue':'#ff0000'}]},
+											{'featureType':'road.highway','elementType':'all','stylers':[{'visibility':'simplified'}]},
+											{'featureType':'road.arterial','elementType':'labels.icon','stylers':[{'visibility':'off'}]},
+											{'featureType':'transit','elementType':'all','stylers':[{'visibility':'off'}]},
+											{'featureType':'transit','elementType':'geometry.fill','stylers':[{'visibility':'on'}]},
+											{'featureType':'transit','elementType':'labels','stylers':[{'visibility':'on'},{'hue':'#ff0000'}]},
+											{'featureType':'water','elementType':'all','stylers':[{'color':'#46bcec'},{'visibility':'on'}]},
+											{'featureType':'water','elementType':'labels','stylers':[{'visibility':'on'},{'color':'#000000'}]}]"> -->
+				<marker ng-repeat="pos in marker"
+					icon="../images/{{pos.devtype}}.png"
+					position="{{pos.lat}},{{pos.long}}"
+					on-click="showDeviceInfo(event, pos)"></marker> 
+					<shape
+					name="polygon" ng-repeat="geofence in geofence"
+					paths="{{geofence}}" stroke-color="#FF0000" stroke-opacity="0.8"
+					stroke-weight="2" fill-color="#FF0000" fill-opacity="0.10">
+				</shape> 
+				</ng-map>
+			</div>
+			<div class="row">
+			<div class="col-sm-12">
+			<section class="speedometerSection" ng-style="{'width':(singleDevice == true) ? '230px' :'280px'}"
+					ng-show="availableDeveice">
+				<!-- <div class="col-sm-12"><label>Available Devices</label></div> -->
+						<div class="col-sm-12 Availhist-container">
+							<ul class="multiplDeviceTable">
+								<li>
+									<ul class="deviceRowList">
+										<!-- <li><span class="barStyle" ng-style='{{getColor(device.type)}}'></span></li> -->
+										<li></li>
+										<li><span class="">Vehicle No</span></li>
+										<!-- <li><span class="helpText">Speed</span><p class="actualText">{{device.speed}}Kmph</p></li> -->
+										<!-- <li><img src="{{img_url}}" class="statusImg"></li> -->
+										<li><span class="addresslatest">Address</span></li>
+									</ul>
+								</li>
+								<li ng-repeat="pos in marker">
+									<ul class="deviceRowList">
+										<!-- <li><span class="barStyle" ng-style='{{getColor(device.type)}}'></span></li> -->
+										<li>{{$index+1}}</li>
+										<li><p class="actualText">{{pos.vehicle_num}}</p></li>
+										<!-- <li><span class="helpText">Speed</span><p class="actualText">{{device.speed}}Kmph</p></li> -->
+										<!-- <li><img src="{{img_url}}" class="statusImg"></li> -->
+										<li><a href="" ng-click="givelt(pos.lat,pos.long);popover.show($event);" class="link">
+																<span>{{pos.lat}}, {{pos.long}}</span>
+														</a></li>
+									</ul>
+								</li>
+							</ul>	
+						</div>
+			</section>
+			</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

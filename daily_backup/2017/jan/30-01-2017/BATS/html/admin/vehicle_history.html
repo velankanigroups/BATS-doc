@@ -1,0 +1,160 @@
+<link rel="stylesheet" href="../assets/select2/css/select2.min.css"/>
+<div class="col-sm-10">
+	<div class="row" ng-init="initialize()">
+		<div class="col-sm-12">
+			<div class="bgloading" ng-show="httpLoading">
+				<div class="bigbar">
+					<h1 class="titleClass">loading!...</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div align="center">
+						<h2 class="heading_title">Vehicle History</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6" id="clearTextGroup">
+					<select id="selectGroup" class="form-control" name="groupList"
+						ng-model="groupname" ng-change="fetchDevicelistHistory(groupname)">
+						<option ng-if="groupList.length" value="" selected disabled class="disable_select">-- Select Group - -</option>
+						<option ng-if="!groupList.length"  selected disabled>No Group Available</option>
+						<option ng-repeat="option in groupList" value="{{ option.gid }}">{{option.gname}}</option>
+					</select>
+				</div>
+				<div class="col-sm-6" id="clearTextDevice">
+					<select id="selectDevice" class="form-control" name="deviceList"
+						ng-model="deviceId"
+						ng-change="fetchDeviceDetailHistory(deviceId);activeMenu = '5'">						
+						<option ng-if="devlistObject.length" value="" selected disabled class="disable_select">-- Select Vehicle No/Device --</option>
+						<option ng-if="!devlistObject.length" selected disabled> No Device Available</option>
+						<option ng-repeat="option in devlistObject" value="{{ option.devid }}">{{option.vehicle_num.length>0?option.vehicle_num:option.devid}}</option>
+					</select>
+				</div>
+			</div>
+			<div class="row marginTop20">
+				<div class="col-sm-12">
+					<div class="row" ng-hide="showDatepicker">
+						<div class="col-sm-12" align="center">
+							<div class="form-group">
+								<md-content> <md-datepicker ng-model="myDate"
+									md-placeholder="Enter date"
+									ng-change="myDateChange(myDate);activeMenu = '5'"
+									md-max-date="todayDate"></md-datepicker>
+								</md-content>
+								<section class="legendHist">
+								<p class="slotlegend" style="float:right;">
+									<span class="fa-stack fa-1x encirclelegend encircleavailable" style="border-color:#000">
+									<strong class="fa-stack-1x calendar-text">1</strong>
+									</span><label class="legendlabel">Available Slots</label></p>
+								<p class="slotlegend" style="float:right;">
+								<span class="fa-stack fa-1x encirclelegend encircleactive" style="border-color:#fff">
+								<strong class="fa-stack-1x calendar-text">1</strong>
+								</span><label class="legendlabel">Selected Slots</label></p>
+								</section>
+							</div>
+							<div class="row" ng-show="showTimeSlot">							
+								<div class="col-sm-3" align="center"
+									ng-click="slotHistory(1,slotA);activeMenu = '1'">
+									<span class="fa-stack fa-1x encircle"
+										ng-class="{encircleactive:activeMenu==='1'&&slotB==='1',encircleavailable:slotA==='1'}"> <strong
+										class="fa-stack-1x calendar-text">1</strong>
+									</span>
+									<p>00:00 to 05:59</p>
+								</div>
+								<div class="col-sm-3" align="center"
+									ng-click="slotHistory(2,slotB);activeMenu = '2'">
+									<span class="fa-stack fa-1x encircle"
+										ng-class="{encircleactive:activeMenu==='2'&&slotB==='1',encircleavailable:slotB==='1'}"> <strong
+										class="fa-stack-1x calendar-text">2</strong>
+									</span>
+									<p>06:00 to 11:59</p>
+								</div>
+								<div class="col-sm-3" align="center"
+									ng-click="slotHistory(3,slotC);activeMenu = '3'">
+									<span class="fa-stack fa-1x encircle"
+										ng-class="{encircleactive:activeMenu==='3'&&slotC==='1',encircleavailable:slotC==='1'}"> <strong
+										class="fa-stack-1x calendar-text">3</strong>
+									</span>
+									<p>12:00 to 17:59</p>
+								</div>
+								<div class="col-sm-3" align="center"
+									ng-click="slotHistory(4,slotD);activeMenu = '4'">
+									<span class="fa-stack fa-1x encircle"
+										ng-class="{encircleactive:activeMenu==='4'&&slotD==='1',encircleavailable:slotD==='1'}"> <strong
+										class="fa-stack-1x calendar-text">4</strong>
+									</span>
+									<p>18:00 to 23:59</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div ng-if="noData" class="paddingTB10">
+						<h1>Kindly Check For other Dates</h1>
+					</div>
+					<!-- HistoryMap -->
+					<!-- <div id="loading_icon" align="center">
+						<img src="../images/loading_pw.gif" width="100px" height="100px">
+					</div> -->
+					<div class="row">
+						<div class="col-sm-12">
+							<div id="history_map" style="width: 100%; height: 50vh;"></div>
+							<!-- <ui-gmap-google-map center='historyMap.center' control="historyMap.control"
+									zoom='historyMap.zoom' aria-label="Google map">
+								<ui-gmap-polyline ng-repeat="p in historyMap.polylines"
+									path="p.path" stroke="p.stroke" visible='p.visible'
+									geodesic='p.geodesic' fit="false" editable="p.editable"
+									draggable="p.draggable"> </ui-gmap-polyline> </ui-gmap-google-map> -->
+						</div>
+					</div>
+					<!-- ./HistoryMap -->
+					<div ng-if="yoData" class="paddingTB10">
+						<!-- History Table -->
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="table-responsive">
+									<section class="tableSection">
+										<div class="hist-container">
+											<table class="table">
+												<thead>
+													<tr class="header">
+														<th>Slno
+															<div>Slno</div>
+														</th>
+														<th>Location(Click lat,long to see address)
+															<div>Location(Click lat,long to see address)</div>
+														</th>
+														<th>Speed in KMPH
+															<div>Speed in KMPH</div>
+														</th>
+														<th>Date Time
+															<div>Date Time</div>
+														</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr ng-repeat="x in plottedData | orderBy:'-ts'">
+														<td>{{$index+1}}</td>
+														<td><a href=""
+															ng-click="givelt(x.lat,x.long);popover.show($event);">
+																<span>{{x.lat}}, {{x.long}}</span>
+														</a></td>
+														<td>{{x.Velocity}}</td>
+														<td>{{showTime(x.ts)}}</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</section>
+								</div>
+							</div>
+						</div>
+						<!-- ./History Table -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

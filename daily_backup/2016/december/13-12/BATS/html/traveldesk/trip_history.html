@@ -1,0 +1,160 @@
+<div class="col-sm-10">
+	<h2 class="heading_title">Vehicle Driver Binding</h2>
+	<div class="bgloading" ng-show="httpLoading">
+		<div class="bigbar">
+			<h1 class="titleClass">loading!...</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<!-- selction part -->
+				<div class="row">
+					<div class="col-sm-6 col-sm-offset-3">
+						<!-- User Choice driver based or vehicle based history -->
+						<div class="row">
+							<div class="col-sm-6" align="center">
+								<input type="radio" name="driverBased" />Driver Based
+							</div>
+							<div class="col-sm-6" align="center">
+								<input type="radio" name="vehicleBased" /> Vehicle Based
+							</div>
+						</div>
+						<!-- User Choice driver based or vehicle based history -->
+						<!-- Driver Name Drop down -->
+						<div class="row mb10">
+							<div class="col-sm-12">
+								<select class="form-control">
+									<option selected>Select Driver</option>
+									<option>Driver Name</option>
+									<option>Driver Name</option>
+								</select>
+							</div>
+						</div>
+						<!-- Vehicle  Drop down -->
+						<div class="row mb10">
+							<div class="col-sm-6">
+								<select class="form-control">
+									<option selected>Select Group</option>
+									<option>Group Name</option>
+									<option>Group Name</option>
+								</select>
+							</div>
+							<div class="col-sm-6">
+								<select class="form-control">
+									<option selected>Select Driver</option>
+									<option>Driver Name</option>
+									<option>Driver Name</option>
+								</select>
+							</div>
+						</div>
+						<!-- Vehicle  Drop down -->
+						<!-- Select Date -->
+						<div class="row mb10">
+							<div class="col-sm-12">
+								<md-content> <md-datepicker
+									md-placeholder="Enter date" md-max-date="todayDate"></md-datepicker>
+								</md-content>
+							</div>
+						</div>
+						<!-- Select Date -->
+						<!-- Select Trip -->
+						<div class="row mb10">
+							<div class="col-sm-12">
+								<select class="form-control">
+									<option selected>Trip List</option>
+									<option>Trip1</option>
+								</select>
+							</div>
+						</div>
+						<!-- Select Trip -->
+					</div>
+				</div>
+				<!-- selction part -->
+				<!-- display history section -->
+				<div class="row mb10">
+					<div class="col-sm-12">
+						<div id="history_map" style="width: 100%; height: 50vh;"></div>
+					</div>
+				</div>
+				<div class="row mb10">
+					<div class="col-sm-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<label>History Details</label>
+							</div>
+							<!-- panel body -->
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-sm-6 col-sm-offset-3" align="center">
+										<img src="./images/loading_icon.gif" ng-show="imageUploading"
+											class="loading_icon img-responsive img-circle img-thumbnail" />
+									</div>
+								</div>
+								<div class="row" ng-hide="imageUploading">
+									<div class="col-sm-2">
+										<img src="./images/driver.png"
+											class="img-responsive img-thumbnail fixWidthHeight" />
+									</div>
+									<div class="col-sm-10">
+										<div class="row mb10">
+											<div class="col-sm-4">
+												<label>Driver Name</label>
+												<p class="mb10">Driver name</p>
+											</div>
+											<div class="col-sm-4">
+												<label>Start Time</label>
+												<p class="mb10">start time</p>
+											</div>
+											<div class="col-sm-4">
+												<label>End Time</label>
+												<p class="mb10">end time</p>
+											</div>
+										</div>
+										<!-- about trip  -->
+										<div class="row mb10">
+											<div class="col-sm-4">
+												<label>Driver Contact No</label>
+												<p class="mb10">Driver number</p>
+											</div>
+											<div class="col-sm-4">
+												<label>Destination</label>
+												<p class="mb10">destination</p>
+											</div>
+											<div class="col-sm-4">
+												<label>Trip Status</label>
+												<p class="mb10">trip</p>
+											</div>
+										</div>
+										<!-- about trip  -->
+									</div>
+								</div>
+								<div class="row mb10">
+									<div class="col-sm-12">
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<label>Customer Info</label>
+											</div>
+											<div class="panel-body">
+												<div class="row">
+													<div class="col-sm-6">
+														<label>Customer Name</label>
+														<p class="mb10">Customer Name</p>
+													</div>
+													<div class="col-sm-6">
+														<label>Customer Contact</label>
+														<p class="mb10">Customer contact</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- ./panel body -->
+						</div>
+					</div>
+				</div>
+				<!-- display history section -->
+		</div>
+	</div>
+</div>

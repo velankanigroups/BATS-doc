@@ -1,0 +1,100 @@
+.header_bats{background:#f8f8f8; padding:5px;height:75px;border-bottom:2px solid #ddd;}
+.custom_label{font-size:20px;padding:0px;margin-bottom:7px;}
+.manageUserH{
+        padding-top: 38px;
+}
+.managedivH {
+    border: none;
+}
+.managedivH>li.active>a {
+    border-radius: 12px 12px 0px 0px;
+}
+.borderLeft{border-left:3px solid #e0e4e5}
+
+.svgWidth{
+   width: 68%;
+    padding: 8px 16px;
+}
+
+.svgWidth{
+   width: 68%;
+   padding: 8px 16px;
+}
+
+.trackerDiv{
+    text-align: center;
+    box-shadow: 1px 2px 26px 4px #eee;
+    margin: 63px;
+    background: #fff;
+    width: 84%;
+    padding-top: 28px;
+    padding-bottom: 28px;
+    padding-right: 50px;
+}
+
+.trackerProgess{
+	/* background-color:#fff; */
+	-webkit-box-shadow:none;
+	box-shadow:none;
+	height:7px;
+}
+.trackerProgessText{
+    text-align: left;
+    padding-bottom: 12px;
+}
+
+.trackerProgessCount{
+    font-size: 25px;
+    padding: 10px;
+}
+
+.activeDiv{
+	margin: 0px auto;
+    padding: 15px 20px;
+    text-align: center;
+    box-shadow: 1px 2px 26px 4px #eee;
+    /* margin: 63px; */
+    background: #fff;
+    width: 84%;
+}
+.activeDivText{
+    width: 100%;
+    padding: 1px 1px;
+}
+.text{
+	display:inline-block;
+}
+.iconPos{
+    margin-left: -56px;
+    margin-right: 19px;
+}
+.activeCount{
+	font-size:28px;
+}
+
+.activeTableStyle{
+	display: flex;
+    flex-flow: column;
+    height: 100%;
+    width: 94%;
+    margin-left: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.tableThickline{
+	height: 63px;
+    width: 8px;
+    padding: 0px;
+    background: black;
+    margin: -12px;
+}
+.tableThickTxt{
+    margin-top: -41px;
+    margin-left: 14px;
+    font-size: 24px;
+    margin-bottom: 5px;
+    color: #757373;
+}
+
+

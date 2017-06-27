@@ -1,0 +1,101 @@
+!SESSION 2017-06-26 17:19:48.987 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_73
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_IN
+Framework arguments:  -showlocation -showlocation
+Command-line arguments:  -os win32 -ws win32 -arch x86 -showlocation -data D:\yashoda\daily_backup\2017\june\26-06\BATS -showlocation
+
+!ENTRY org.eclipse.ui 2 0 2017-06-26 17:19:50.081
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2017-06-26 17:19:50.082
+!MESSAGE Commands should really have a category: plug-in='org.eclipse.php.ui', id='org.eclipse.dltk.ui.edit.text.java.source.quickMenu', categoryId='org.eclipse.jdt.ui.category.source'
+
+!ENTRY org.eclipse.ui 4 4 2017-06-26 17:19:51.462
+!MESSAGE Part already exists in page layout: org.zend.php.framework.ui.views.mvc.
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-06-26 17:19:52.286
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-06-26 17:19:52.286
+!MESSAGE Conflict for 'org.eclipse.dltk.ui.edit.text.script.refactor.quickMenu':
+HandlerActivation(commandId=org.eclipse.dltk.ui.edit.text.script.refactor.quickMenu,
+	handler=org.eclipse.dltk.internal.ui.actions.refactoring.RefactorActionGroup$3@1e32c9,
+	expression=AndExpression(ActivePartExpression(org.eclipse.php.internal.ui.explorer.PHPExplorerPart@b0f763),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@16d844d)),sourcePriority=1064960)
+HandlerActivation(commandId=org.eclipse.dltk.ui.edit.text.script.refactor.quickMenu,
+	handler=org.eclipse.dltk.internal.ui.actions.refactoring.RefactorActionGroup$3@3864d5,
+	expression=AndExpression(ActivePartExpression(org.eclipse.php.internal.ui.explorer.PHPExplorerPart@b0f763),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@16d844d)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.osgi 2 1 2017-06-26 17:20:00.864
+!MESSAGE NLS unused message: CacheManager_CannotLoadNonUrlLocation in: org.eclipse.equinox.internal.p2.repository.messages
+
+!ENTRY org.eclipse.equinox.p2.discovery 4 0 2017-06-26 17:20:02.355
+!MESSAGE Unexpected error while verifying site availability: Unknown Host: http://p2.dubture.com/content.jar
+!STACK 0
+java.util.concurrent.ExecutionException: org.eclipse.core.runtime.CoreException: Unknown Host: http://p2.dubture.com/content.jar
+	at java.util.concurrent.FutureTask.report(Unknown Source)
+	at java.util.concurrent.FutureTask.get(Unknown Source)
+	at org.eclipse.equinox.internal.p2.discovery.compatibility.SiteVerifier.verifySiteAvailability(SiteVerifier.java:77)
+	at org.zend.php.common.ZendCatalogViewer$7.run(ZendCatalogViewer.java:486)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Caused by: org.eclipse.core.runtime.CoreException: Unknown Host: http://p2.dubture.com/content.jar
+	at org.eclipse.equinox.internal.p2.transport.ecf.RepositoryTransport.getLastModified(RepositoryTransport.java:236)
+	at org.eclipse.equinox.internal.p2.discovery.compatibility.util.TransportUtil.verifyAvailability(TransportUtil.java:135)
+	at org.eclipse.equinox.internal.p2.discovery.compatibility.SiteVerifier$VerifyUpdateSiteJob.call(SiteVerifier.java:135)
+	at org.eclipse.equinox.internal.p2.discovery.compatibility.SiteVerifier$VerifyUpdateSiteJob.call(SiteVerifier.java:1)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: p2.dubture.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.eclipse.ecf.provider.filetransfer.events.socket.SocketEventCreateUtil.createSocket(SocketEventCreateUtil.java:43)
+	at org.eclipse.ecf.internal.provider.filetransfer.httpclient.ECFHttpClientProtocolSocketFactory.createSocket(ECFHttpClientProtocolSocketFactory.java:81)
+	at org.eclipse.ecf.internal.provider.filetransfer.httpclient.ECFHttpClientProtocolSocketFactory.createSocket(ECFHttpClientProtocolSocketFactory.java:73)
+	at org.eclipse.ecf.internal.provider.filetransfer.httpclient.ECFHttpClientProtocolSocketFactory.createSocket(ECFHttpClientProtocolSocketFactory.java:65)
+	at org.apache.commons.httpclient.HttpConnection.open(HttpConnection.java:707)
+	at org.apache.commons.httpclient.MultiThreadedHttpConnectionManager$HttpConnectionAdapter.open(MultiThreadedHttpConnectionManager.java:1361)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeWithRetry(HttpMethodDirector.java:387)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:346)
+	at org.eclipse.ecf.provider.filetransfer.httpclient.HttpClientFileSystemBrowser.runRequest(HttpClientFileSystemBrowser.java:232)
+	at org.eclipse.ecf.provider.filetransfer.browse.AbstractFileSystemBrowser$DirectoryJob.run(AbstractFileSystemBrowser.java:69)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.ui 2 2 2017-06-26 17:20:56.554
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.html.ui, propertyPage: org.eclipse.wst.html.ui.propertyPage.project.validation)
+
+!ENTRY org.eclipse.ui 2 2 2017-06-26 17:20:56.555
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+!SESSION 2017-06-26 17:20:57.899 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_73
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_IN
+Framework arguments:  -showlocation -showlocation -showlocation
+Command-line arguments:  -os win32 -ws win32 -arch x86 -showlocation -showlocation -data D:\yashoda\daily_backup\2017\june\26-06\BATS -showlocation
+
+!ENTRY org.eclipse.ui 2 0 2017-06-26 17:20:59.028
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2017-06-26 17:20:59.028
+!MESSAGE Commands should really have a category: plug-in='org.eclipse.php.ui', id='org.eclipse.dltk.ui.edit.text.java.source.quickMenu', categoryId='org.eclipse.jdt.ui.category.source'
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-06-26 17:21:00.664
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-06-26 17:21:00.664
+!MESSAGE Conflict for 'org.eclipse.dltk.ui.edit.text.script.refactor.quickMenu':
+HandlerActivation(commandId=org.eclipse.dltk.ui.edit.text.script.refactor.quickMenu,
+	handler=org.eclipse.dltk.internal.ui.actions.refactoring.RefactorActionGroup$3@9debbb,
+	expression=AndExpression(ActivePartExpression(org.eclipse.php.internal.ui.explorer.PHPExplorerPart@13c232f),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1f69e84)),sourcePriority=1064960)
+HandlerActivation(commandId=org.eclipse.dltk.ui.edit.text.script.refactor.quickMenu,
+	handler=org.eclipse.dltk.internal.ui.actions.refactoring.RefactorActionGroup$3@1cd49a4,
+	expression=AndExpression(ActivePartExpression(org.eclipse.php.internal.ui.explorer.PHPExplorerPart@13c232f),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1f69e84)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui 2 2 2017-06-26 17:21:44.375
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.html.ui, propertyPage: org.eclipse.wst.html.ui.propertyPage.project.validation)
+
+!ENTRY org.eclipse.ui 2 2 2017-06-26 17:21:44.375
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)

@@ -1,0 +1,92 @@
+<div class="col-sm-10">
+	<!-- vehicle driver binding -->
+	<div class="row">
+		<div class="col-sm-12">
+			<!-- sorting /filtering part -->
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="row">
+						<div class="col-sm-4" id="clearBinding">
+							<select id="selectBindStatus" class="form-control" name="bindStatus"
+								ng-model="bindStatus" ng-change="">
+							<option value="" selected disabled class="disable_select">-	- - Binding Staus - - -</option>
+							<option value="0">Binded Vehicle</option>
+							<option value="1">Un-Binded Vehicle</option>
+							</select>
+						</div>
+						<div class="col-sm-4" id="clearTextGroup">
+							<select id="selectGroup" class="form-control" name="groupList"
+								ng-model="groupname" ng-change="fetchDevicelist(groupname)">
+								<option ng-if="groupList.length" value="" selected disabled
+									class="disable_select">-- Select Group - -</option>
+								<option ng-if="!groupList.length" selected disabled>No
+									Group Available</option>
+								<option ng-repeat="option in groupList" value="{{ option.gid }}">{{option.gname}}</option>
+							</select>
+						</div>
+						<div class="col-sm-4" id="clearTextDevice">
+							<!-- <div ng-show="deviceloading"><img src="../../images/loading.gif" width="10px" height="10px"/></div> -->
+							<select id="selectDevice" class="form-control" name="deviceList"
+								ng-model="deviceId" ng-change="fetchDeviceDetail(gid,deviceId)">
+								<option ng-if="devlistObject.length" value="" selected disabled
+									class="disable_select">-- Select Vehicle No/Device --</option>
+								<option ng-if="!devlistObject.length" selected disabled>
+									No Device Available</option>
+								<option ng-repeat="option in devlistObject"
+									value="{{ option.devid }}">{{option.vehicle_num.length>0?option.vehicle_num:option.devid}}</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- ./sorting /filtering part -->
+			<!-- Section for list vehicles after sorting or filtering done -->
+			<div class="row">
+				<div class="col-sm-12">
+					<ul>
+						<li ng-repeat="device in devlistObject | filter:deviceId ">
+						
+						<div class="panel panel-default">
+									<div class="panel-heading">
+										<div class="row">
+											<!-- Vehicle Number -->
+											<div class="col-sm-2">
+												<label>Vehicle No</label>
+												<p>{{device.vehicle_num.length>0?device.vehicle_num:device.devid}}</p>
+											</div>
+											<!-- ./Vehicle Number -->
+											<!-- Vehicle Model -->
+											<div class="col-sm-3">
+												<label>Vehicle Model</label>
+												
+											</div>
+											<!-- ./Vehicle Model -->
+											<!-- Driver Name -->
+											<div class="col-sm-3">
+												<label>Driver Name</label>
+												<p>{{device.driver_name}}</p>
+											</div>
+											<!-- Driver Name -->
+											<!-- Driver Assign -->
+											<div class="col-sm-3">
+													<a href="#" class="edit_icon_device"
+												ng-click="submitUpdateDevice(devicedet.devid)"
+												data-toggle="modal" data-target="#updateDeviceModal">
+												<i class="fa fa-paperclip" aria-hidden="true"></i>
+												</a>
+											</div>
+											<!-- Driver Assign -->
+										</div>
+									</div>
+								</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- End of section for list vehicles after sorting or filtering done -->
+		</div>
+	</div>
+	<!-- vehicle driver binding -->
+	<!-- driver list modal -->
+	<!-- ./driver list modal -->
+</div>

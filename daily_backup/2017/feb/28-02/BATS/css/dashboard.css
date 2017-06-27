@@ -1,0 +1,232 @@
+.header_bats{background:#f8f8f8; padding:5px;height:75px;border-bottom:2px solid #ddd;}
+.custom_label{font-size:20px;padding:0px;margin-bottom:7px;}
+.manageUserH{
+        padding-top: 38px;
+}
+.managedivH {
+    border: none;
+}
+.managedivH>li.active>a {
+    border-radius: 12px 12px 0px 0px;
+}
+.borderLeft{border-left:3px solid #e0e4e5}
+
+.svgWidth{
+   width: 68%;
+    padding: 8px 16px;
+}
+
+.svgWidth{
+   width: 78%;
+   padding: 7px 50px;
+   
+}
+
+.mar0{
+	margin: 0px
+}
+
+.trackerDiv{
+    text-align: center;
+    box-shadow: 1px 2px 26px 4px #eee;
+    margin: 39px 0px 40px 20px;
+    background: #fff;
+    width: 94%;
+    padding-top: 28px;
+    padding-bottom: 28px;
+   /*  padding-right: 56px; */
+}
+/* .trackerTxt{
+margin-right: -50px;
+} */
+
+.trackerBTxt{
+	/* margin-right: -50px; */
+	color:#dddddd;
+}
+
+.trackerProgessRow{
+	margin-top: 48px;
+}
+.trackerProgess{
+	/* background-color:#fff; */
+	-webkit-box-shadow:none;
+	box-shadow:none;
+	height:7px;
+}
+.trackerProgessText{
+    text-align: left;
+    padding-bottom: 8px;
+}
+
+.trackerProgessCountAllo{
+    font-size: 25px;
+    padding: 10px;
+    color:#008cdc;
+}
+
+.trackerProgessCountUna{
+    font-size: 25px;
+    padding: 10px;
+    color:#b3b3b3;
+}
+.trackerProgessCountNotW{
+    font-size: 25px;
+    padding: 10px;
+    color:#e54a4e;
+}
+
+
+.activeDiv{
+	margin: 0px auto;
+    /* padding: 15px 20px; */
+    text-align: center;
+    box-shadow: 1px 2px 26px 4px #eee;
+    /* margin: 63px; */
+    background: #fff;
+     width: 96%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.activeDivText{
+    width: 88%;
+    padding: 1px 1px;
+}
+.text{
+	display:inline-block;
+	
+}
+.iconPos{
+    margin-left: -56px;
+    margin-right: 19px;
+}
+.activeCount{
+	font-size:28px;
+}
+
+.activeTableStyle{
+	display: flex;
+    flex-flow: column;
+    height: 100%;
+    width: 94%;
+    margin-left: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.tableThickline{
+	height: 63px;
+    width: 8px;
+    padding: 0px;
+    background: #01ae81;
+    margin: -12px;
+}
+.tableThickTxt{
+    margin-top: -41px;
+    margin-left: 14px;
+    font-size: 24px;
+    margin-bottom: 5px;
+    color: #757373;
+}
+
+.activeImg{
+    width: 28px;
+    /* padding: 0px; */
+    /* margin-left: -51px; 
+    margin-right: 15px; */
+}
+
+.activeTableStyle thead{
+	background-color:#f5f3f3;
+}
+.activeTableStyle th{
+	background-color:#f5f3f3 !important;
+}
+
+.activeTableStyle th:first-child{
+	background-color:#f5f3f3;  
+}
+
+
+.shapeborder { border:0px solid black; }
+.circle { border-radius: 50%; }
+
+.outer {
+    background-color: #eee;
+    width: 120px;
+    height: 120px;
+    position: relative;
+    margin: 0 auto;
+    /* display: inline-block; */
+    margin-top: 18px;
+    margin-bottom: 18px;
+}
+
+.inner {
+   background-color: #6668a5;
+   top: 13%;
+    left: 13%;
+    width: 74%;
+    height: 74%;
+    position: relative;
+}
+
+#rings {
+    position: relative;
+    text-align: center;
+    /* width: 200px; */
+    height: 102px;
+    margin: 0 auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#first-ring {
+   /*  position: absolute; */
+    border: 8px solid #4698f2;
+    /* border-top-color: #eee; */
+        margin: 0px auto;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    /* -webkit-animation: turn_clockwise 10s infinite;
+    -moz-animation: turn_clockwise 10s infinite;
+    animation: turn_clockwise 10s infinite; */   
+}
+ 
+#second-ring {
+    position: absolute;
+    border: 5px solid #f00;
+    /* border-top-color: #fff; */
+    border-bottom-color: #fff;
+       width: 88px;
+    height: 88px;
+    margin: -2px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+   -webkit-animation: turn_counter_clockwise ;
+    -moz-animation: turn_counter_clockwise ;
+    animation: turn_counter_clockwise ; 
+}
+
+#third-ring {
+    position: absolute;
+    border: 6px solid #315379;
+    /* border-bottom-color: #eee; */
+    margin: 1px;
+    width: 77px;
+    height: 77px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+   /*  -webkit-animation: turn_clockwise 10s infinite;
+    -moz-animation: turn_clockwise 10s infinite;
+    animation: turn_clockwise 10s infinite; */
+} 
+
+

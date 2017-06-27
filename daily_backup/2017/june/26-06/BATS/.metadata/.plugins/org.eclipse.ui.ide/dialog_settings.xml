@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="installedFeatures">
+		<item value="org.eclipse.dltk.core.index:5.0.0.201309241927"/>
+		<item value="org.eclipse.dltk.core:5.0.0.201309241927"/>
+		<item value="org.eclipse.draw2d:3.9.0.201212170307"/>
+		<item value="org.eclipse.emf.common.ui:2.7.0.v20130125-0826"/>
+		<item value="org.eclipse.emf.common:2.8.0.v20130125-0546"/>
+		<item value="org.eclipse.emf.ecore.edit:2.8.0.v20130125-0826"/>
+		<item value="org.eclipse.emf.ecore:2.8.3.v20130125-0546"/>
+		<item value="org.eclipse.emf.edit.ui:2.8.0.v20130125-0826"/>
+		<item value="org.eclipse.emf.edit:2.8.0.v20130125-0826"/>
+		<item value="org.eclipse.gef:3.9.0.201212170307"/>
+		<item value="org.eclipse.help:1.4.1.v20120912-145617-8R7xFOXFLWUl7PpMEeZNIGkb4"/>
+		<item value="org.eclipse.platform:3.8.1.v20130118-180812-9jF7oIBFG8eU2pim-VbIlTuQjY0RWWK3x-bv4I"/>
+		<item value="org.eclipse.rcp:3.8.2.v20130118-180157-96BuGOZFxwOAeG8Ofmqicz0tPK"/>
+		<item value="org.eclipse.wst.common.fproj:3.4.0.v201202292300-377F8N8s735555393B7B"/>
+		<item value="org.eclipse.xsd.edit:2.7.0.v20130125-0826"/>
+		<item value="org.eclipse.xsd:2.8.1.v20130125-0826"/>
+		<item value="org.zend.usagedata:1.0.1.201309181502"/>
+	</list>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
+	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item value="338" key="DIALOG_X_ORIGIN"/>
+		<item value="313" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog">
+		<item value="true" key="ShowStatusLine"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;History&gt;&#x0D;&#x0A;&lt;historyRootNode/&gt;&#x0D;&#x0A;&lt;/History&gt;" key="History"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;workingSet workingSetName=&quot;&quot;/&gt;" key="WorkingSet"/>
+		<item value="false" key="ShowDerived"/>
+		<section name="DialogBoundsSettings">
+			<item value="600" key="DIALOG_WIDTH"/>
+			<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+			<item value="500" key="DIALOG_HEIGHT"/>
+			<item value="348" key="DIALOG_X_ORIGIN"/>
+			<item value="167" key="DIALOG_Y_ORIGIN"/>
+		</section>
+	</section>
+</section>

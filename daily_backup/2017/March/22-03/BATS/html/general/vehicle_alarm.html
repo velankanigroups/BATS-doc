@@ -1,0 +1,167 @@
+<div class="col-sm-12">
+	<div class="bgloading" ng-show="httpLoading">
+		<div class="bigbar">
+			<h1 class="titleClass">loading!...</h1>
+		</div>
+	</div>
+	<div class="row header_bats">
+		<div class="col-sm-10">
+			<div class="row">
+				<div class="col-sm-12">
+					<label class="custom_label">Search Vehicle</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3 customcol3" id="clearTextGroup">
+					<select id="selectGroup" class="form-control" name="groupList"
+						ng-model="groupname" ng-change="fetchDevList(groupname)">
+						<option ng-if="groupList.length" value="" selected disabled
+							class="disable_select">-- Select Group - -</option>
+						<option ng-if="!groupList.length" selected disabled>No
+							Group Available</option>
+						<option ng-repeat="option in groupList" value="{{ option.gid }}">{{option.gname}}</option>
+					</select>
+				</div>
+				<div class="col-sm-3 customcol3" id="clearTextDevice">
+					<select id="selectDevice" class="form-control" name="devList"
+						ng-model="deviceId" ng-change="deviceSelectedAlarm()">
+						<option></option>
+						<option ng-if="devList.length" value="" selected disabled
+							class="disable_select">-- Select Vehicle No/Device --</option>
+						<option ng-if="!devList.length" selected disabled>No
+							Device Available</option>
+						<option ng-repeat="option in devList" value="{{ option.devid }}">{{option.vehicle_num.length>0?option.vehicle_num:option.devid}}</option>
+					</select>
+				</div>
+				<section ng-show="deviceSelectAlarm">
+					<div class="col-sm-3 customcol3 ">
+						<!-- <div class="datepickerDivStyle">
+							<md-content> <md-datepicker ng-model="myDate.start"
+								md-placeholder="Enter date" md-max-date="todayDate"></md-datepicker>
+							</md-content>
+						</div> -->
+						<div class='input-group date SpddateB' id='GVAStartTimePic'>
+							<input type='text' class="form-control SpddateNB" id="GVAStartTime"
+								readonly="readonly" placeholder="Start Date" /> <span
+								class="input-group-addon SpddateNB"> <span
+								class="glyphicon glyphicon-calendar"> </span>
+							</span>
+						</div>
+					</div>
+					<div class="col-sm-3 customcol3 ">
+						<!-- <div class="datepickerDivStyle">
+							<md-content> <md-datepicker ng-model="myDate.end"
+								md-placeholder="Enter date" md-max-date="todayDate"></md-datepicker>
+							</md-content>
+						</div> -->
+						<div class='input-group date SpddateB' id='GVAEndTimePic'>
+							<input type='text' class="form-control SpddateNB" id="GVAEndTime"
+								readonly="readonly" placeholder="End Date" /> <span
+								class="input-group-addon SpddateNB"> <span
+								class="glyphicon glyphicon-calendar"> </span>
+							</span>
+						</div>
+					</div>
+					<div class="col-sm-1 pad0">
+						<button class="btn btn-primary btn-sm" ng-click="submitAlarm()">Submit</button>
+					</div>
+				</section>
+			</div>
+		</div>
+		<div class="col-sm-2 borderLeft">
+			<div ng-include src="'/general/subMenu'"></div>
+		</div>
+	</div>
+	<!-- Alarm History Table -->
+	<div class="row">
+		<div class="col-sm-12 pad0">
+			<div class="table-responsive" ng-if="showResultTable">
+				<div class="table-container" ng-style="histcontentheight">
+					<table class="tablestyle">
+						<thead class="theadStyle tablethead">
+							<tr>
+								<th>Slno</th>
+								<th>Alarm Type</th>
+								<th>Speed in KMPH</th>
+								<th>Time | Date</th>
+								<th>Location(Click lat,long to see address)</th>
+							</tr>
+						</thead>
+						<tbody class="tbodyStyle">
+							<tr class="tbodytr tabletbodytr"  ng-repeat='x in alarm_history'>
+									<td>{{$index+1}}</td>
+									<!-- <td>{{x.alarm_type}}</td> -->
+									<td ng-if="x.alarm_type == '0' ">Panic Alarm</td>
+									<td ng-if="x.alarm_type == '1' ">Tamper Sim Alarm</td>
+									<td ng-if="x.alarm_type == '2' ">Tamper Top Alarm</td>
+									<td ng-if="x.alarm_type == '3' ">Battery Alarm</td>
+									<td ng-if="x.alarm_type == '4' ">Overspeed Alarm</td>
+									<td ng-if="x.alarm_type == '5' ">Geofence Alarm</td>
+									<td ng-if="x.alarm_type == '6' ">Sanity Alarm</td>
+									<td ng-if="x.alarm_type == '7' ">Power Interrupt Alarm</td>
+									<td ng-style="{{x.alarm_type == '4'?'redColor':'blackColor'}}">{{x.Velocity}}</td>
+									<td>{{getDate(x.ts)}}</td>
+									<td><a class="link" href=""
+										ng-click="givelt(x.lat,x.long);popover.show($event);"> <span>{{x.lat}},
+												{{x.long}}</span></a></td>
+								</tr>
+								
+							</tbody>
+						</table>
+					</div>
+				
+			</div>
+		</div>
+	</div>
+	<!-- ./Alarm History Table -->
+<div class="row" ng-if="blankTable">
+		<div class="col-sm-12 verhorcenter" align="center">
+			<div class="centerData" style="margin-top:100px;">
+				<ul class="nodata_list" >
+					<li><img alt="" src="../images/select-dropdown.png" class="nodata_img"></li>
+					<li><label style="color: #000;margin-left:35px">  Select Vehicle!</label></li>
+					<li><span>Shows Event history of the vehicle with time & location</span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="row" ng-if="noResultTable">
+		<div class="col-sm-12 verhorcenter" align="center">
+			<div class="centerData">
+				<ul class="nodata_list">
+					<li><img alt="" src="../images/no-data.png" class="nodata_img"></li>
+					<li><label style="color: #000">Nothing here!</label></li>
+					<li><span>No Data Available</span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,611 @@
+<div class="col-sm-12">
+	<div class="row header_bats">
+		<div class="col-sm-10">
+			<div class="row">
+				<div class="col-sm-12">
+					<label class="custom_label">Dashboard</label>
+				</div>
+			</div>
+			<ul class="nav nav-tabs managedivH dashboardTab">
+				<li ng-class="{ active: isSet(1) }"><a href
+					ng-click="setTab(1)">
+					<img alt="" ng-src="{{isSet(1) == true?'../images/tracker-copy.png':'../images/tracker.png'}}" class="activeImg activeTabImg">
+					<div class="Tabtext">Tracker</div>
+					</a></li>
+				<li ng-class="{ active: isSet(2) }"><a href
+					ng-click="setTab(2)">
+					<img alt="" ng-src="{{isSet(2) == true?'../images/trip-copy.png':'../images/trip.png'}}" class="activeImg activeTabImg">
+					<div class="Tabtext">Trip</div>
+					</a></li>
+				<li ng-class="{ active: isSet(3) }"><a href 
+				ng-click="setTab(3)">
+				<img alt="" ng-src="{{isSet(3) == true?'../images/driverD-copy.png':'../images/driverD.png'}}" class="activeImg activeTabImg">
+				<div class="Tabtext">Driver</div>
+				</a></li>
+				<li ng-class="{ active: isSet(4) }"><a href 
+				ng-click="setTab(4)">
+				<img alt="" ng-src="{{isSet(4) == true?'../images/vehicle-copy.png':'../images/vehicle.png'}}" class="activeImg activeTabImg">
+				<div class="Tabtext">Vehicle</div>
+				</a></li>
+			</ul>
+
+
+
+		</div>
+		<div class="col-sm-2 borderLeft">
+			<div ng-include src="'/general/subMenu'"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12 pad0">
+			<div class="tab-content">
+				<!-- <div class="bgloading" ng-show="httpLoading">
+					<div class="bigbar">
+						<h1 class="titleClass">loading!...</h1>
+					</div>
+				</div> -->
+				<div ng-show="isSet(1)" class="setBackgroundColor">
+				<div class="row">
+					<div class="col-sm-3">
+							<!-- <div id="TestDonut" style="width: 175px; height: 175px;></div>
+						</div>
+						<div class="col-sm-8">
+						</div> -->
+						<div class="trackerDiv">
+						<div>Total</div>
+						<div class="outer circle">
+						      <div class="inner trackerInnerColor circle"> 
+						      <div class="innerTxt circle">{{TrackerCount.total}}</div>
+						      </div>
+						</div>
+						<!-- <svg class="svgWidth">
+				            <circle cx="80" cy="80" r="50" fill='#6668a5' stroke-width="20" stroke='#eee'/> 
+				           <text class="activeCount" x="50%" y="50%" text-anchor="middle" stroke="#ffffff" stroke-width="0px" dx=".9em" dy="0.7em">10</text>
+				        </svg> -->
+				       <!--  <div class="trackerBTxt">Trackers</div> -->
+				        <div class="notWorking" ng-click="getList(6);gotoElement('trackerDataTableG');headTxt='Not Working'">Not Working:  {{TrackerCount.nonworking}}</div>
+				        </div>
+					</div>
+					<div class="col-sm-9">
+						<div class="trackerDiv1">
+							<div class="row">
+							<div class="col-sm-12">
+								<!-- <div class="col-sm-4">
+									<div id="container" style="width: 200px; height: 200px;"></div>
+								
+								</div> -->
+								<div class="col-sm-3">
+									<div class="activeDiv">
+									
+									<img alt="" src="../images/activated.png" class="activeImg">
+									<!-- <i class="fa fa-user fa-2x iconPos"></i> -->
+									<div class="text">Activated</div>
+									
+									<!-- <svg class="activeDivText">
+							            <circle cx="80" cy="80" r="50" fill='#ffffff' stroke-width="5" stroke='#e4f3ef'/>
+							            <circle cx="80" cy="80" r="40" fill='#ffffff' stroke-width="5" stroke='#e4f3ef'/>
+							             <text class="activeCount" x="50%" y="50%" text-anchor="middle" stroke="#000000" stroke-width="1px" dy=".6em">10</text>
+							        </svg> -->
+							        
+							        <div id="ActiveRings1">
+									    <div id="ActiveFirst-ring1">
+									        <div id="ActiveSecond-ring1">
+									            <div id="ActiveThird-ring1" ng-class="{'removeCursorPointer':TrackerCount.active<=0}" ng-click="getList(2);gotoElement('trackerDataTableG');headTxt='Activated'">
+									            <div class="ActiveRingsTxt">{{TrackerCount.active}}</div>
+									            </div>
+									        </div>
+									    </div>
+									</div>
+							        </div>
+								</div>
+									<div class="col-sm-3">
+										<div class="activeDiv">    
+										<img alt="" src="../images/not-activated.png" class="activeImg">
+										<div class="text">Not activated</div>
+										<!-- <svg class="activeDivText">
+								           <circle cx="80" cy="80" r="50" fill='#ffffff' stroke-width="5" stroke='#eee'/>
+								            <circle cx="80" cy="80" r="40" fill='#ffffff' stroke-width="5" stroke='#eee'/>
+								             <text class="activeCount" x="50%" y="50%" text-anchor="middle" stroke="#000000" stroke-width="1px" dy=".6em">10</text>
+								        </svg> -->
+								        <div id="NotActiveRings1">
+										    <div id="NotActiveFirst-ring1">
+										        <div id="NotActiveSecond-ring1">
+										            <div id="NotActiveThird-ring1" ng-class="{'removeCursorPointer':TrackerCount.inactive<=0}" ng-click="getList(3);gotoElement('trackerDataTableG');headTxt='Not activated'">
+										            <div class="ActiveRingsTxt">{{TrackerCount.inactive}}</div>
+										            </div>
+										        </div>
+										    </div>
+										</div>
+								        
+								        </div>
+									</div>
+									<div class="col-sm-3">
+										<div class="activeDiv">
+										<img alt="" src="../images/battery-low.png" class="activeImg">
+										<div class="text">Battery Low</div>
+										<!-- <svg class="activeDivText">
+								            <circle cx="80" cy="80" r="50" fill='#ffffff' stroke-width="5" stroke='#eee'/>
+								            <circle cx="80" cy="80" r="40" fill='#ffffff' stroke-width="5" stroke='#eee'/>
+								             <text class="activeCount" x="50%" y="50%" text-anchor="middle" stroke="#000000" stroke-width="1px" dy=".6em">10</text>
+								        </svg> -->
+								        <div id="BatteryRings1">
+										    <div id="BatteryFirst-ring1">
+										        <div id="BatterySecond-ring1">
+										            <div id="BatteryThird-ring1" ng-class="{'removeCursorPointer':TrackerCount.batterylow<=0}" ng-click="getList(4);gotoElement('trackerDataTableG');headTxt='Battery Low'">
+										            	<div class="ActiveRingsTxt">{{TrackerCount.batterylow}}</div>
+										            </div>
+										        </div>
+										    </div>
+										</div>
+								        
+								        </div>
+									</div>
+									<div class="col-sm-3">
+										<div class="activeDiv">
+										<img alt="" src="../images/tampered.png" class="activeImg">
+										<div class="text">Tampered</div>
+										<!-- <svg class="activeDivText">
+								            <circle cx="80" cy="80" r="50" fill='#ffffff' stroke-width="5" stroke='#eee'/>
+								            <circle cx="80" cy="80" r="40" fill='#ffffff' stroke-width="5" stroke='#eee'/>
+								             <text class="activeCount" x="50%" y="50%" text-anchor="middle" stroke="#000000" stroke-width="1px" dy=".6em">10</text>
+								        </svg> -->
+								        <div id="TamperedRings1">
+										    <div id="TamperedFirst-ring1">
+										        <div id="TamperedSecond-ring1">
+										            <div id="TamperedThird-ring1" ng-class="{'removeCursorPointer':TrackerCount.tampered<=0}" ng-click="getList(5);gotoElement('trackerDataTableG');headTxt='Tampered'">
+										            <div class="ActiveRingsTxt">{{TrackerCount.tampered}}</div>
+										            </div>
+										        </div>
+										    </div>
+										</div>
+								        
+								        </div>
+									</div>
+									</div>
+									</div>
+								</div>
+				<!-- </div> -->
+					</div>
+					</div>
+					<div id="trackerDataTableG"></div>
+				<div class="row" ng-hide="hideTripTable">
+							<div class="col-sm-12">
+								<div class="table-container" ng-style="histcontentheight">
+									<table class="activeTableStyle">
+										<thead class="theadStyle tablethead">
+											<tr>
+												
+												<th> 
+													<div class="tableThickline" ng-style="headTxt == 'Not Working' && {'background-color':'#000000'}  || headTxt == 'Allocated' && {'background-color':'#008cdc'}  || headTxt == 'Un Allocated' && {'background-color':'#b3b3b3'} || headTxt == 'Activated' && {'background-color':'#01ae81'} || headTxt == 'Not activated' && {'background-color':'#5d686c'} || headTxt == 'Battery Low' && {'background-color':'#ee4423'} || headTxt == 'Tampered' && {'background-color':'#ffcc33'}"></div>
+												</th> <!--  == 'Scheduled'? {'background-color':'#008cdc'}:{'background-color':'#000000'} -->
+												<th><p class="tableThickTxt">{{headTxt}}</p></th>
+												<th></th>
+												<th></th>
+												<th></th>
+												<th ng-show="headTxt == 'Battery Low' || headTxt == 'Tampered'"></th> 
+												
+												<!-- <th><div>Activated</div></th> -->
+											</tr>
+											<tr>
+												<!-- <th><div>Slno</div></th> -->
+												<th><div></div></th>
+												<th><div>DEVICE ID</div></th>
+												<th><div>VEHICLE NO </div></th>
+												<th><div>GROUP NAME</div></th>
+												<th><div>VEHICLE MODEL</div></th> 
+												<th ng-show="headTxt == 'Battery Low' || headTxt == 'Tampered'"><div>TIME</div> </th>
+											</tr>
+										</thead>
+										<tbody class="tbodyStyle">
+											<tr class="tbodytr tabletbodytr" ng-repeat="tracker in TrackerActList">
+												<td><p class="culomPad">{{$index+1}}</p></td>
+												<td><p>{{tracker.devid}}</p></td>
+												<td><p>{{tracker.vehicle_num}}</p></td>
+												
+												<td ng-if="headTxt == 'Not Working' || headTxt == 'Battery Low' || headTxt == 'Tampered'"><p>{{tracker.gname}}</p></td>
+												<td ng-if="headTxt == 'Allocated' || headTxt == 'Activated' || headTxt == 'Not activated'"><p>{{tracker.values.associated_group.gname}}</p></td>
+												
+												<td><p>{{tracker.vehicle_model}}</p></td>
+												<td ng-show="headTxt == 'Battery Low' || headTxt == 'Tampered'"><p>{{getTimeFormat(tracker.ts)}}</p></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					
+</div>
+				<div ng-show="isSet(2)" class="setBackgroundColor" ng-controller="dashboardTripController"
+					>
+					<div class="row mar0">
+						<div id="TripMap" class="TripMap"></div>
+						<div class="row mar0">
+							<div class="col-sm-2"  ng-class="{'removeCursorPointer':scheduled<=0}"
+								ng-click="getTripDataByStatus('S');gotoElement('tripDataTable');headText='Scheduled';">
+								<div class="TripCircleDiv">
+									<div>Scheduled</div>
+									<div class="TripOuterCircle SOutCircle circle">
+										<div class="inner sheduleInnerColor circle">
+											<div class="innerTxt">{{scheduled}}</div>
+										</div>
+									</div>
+									<div class="scheduleLine"></div>
+									<!-- <svg class="svgWidth">
+						            <circle cx="80" cy="80" r="50" fill='#6668a5' stroke-width="20" stroke='#eee'/> 
+						           <text class="activeCount" x="50%" y="50%" text-anchor="middle" stroke="#ffffff" stroke-width="0px" dx=".9em" dy="0.7em">10</text>
+						        </svg> -->
+								</div>
+							</div>
+							<div class="col-sm-2" ng-class="{'removeCursorPointer':running<=0}"
+								ng-click="getTripDataByStatus('R');gotoElement('tripDataTable');headText='Running';">
+								<div class="TripCircleDiv">
+									<div>Running</div>
+									<div class="TripOuterCircle ROutCircle circle">
+										<div class="inner runningInnerColor circle">
+											<div class="innerTxt">{{running}}</div>
+										</div>
+									</div>
+									<div class="runningLine"></div>
+								</div>
+							</div>
+							<div class="col-sm-2" ng-class="{'removeCursorPointer':delay_count<=0}"
+								ng-click="getTripDataByStatus('delay');gotoElement('tripDataTable');headText='Delayed';">
+								<div class="TripCircleDiv">
+									<div>Delayed</div>
+									<div class="TripOuterCircle DOutCircle circle">
+										<div class="inner delayedInnerColor circle">
+											<div class="innerTxt">{{delay_count}}</div>
+										</div>
+									</div>
+									<div class="delayedLine"></div>
+								</div>
+							</div>
+							<div class="col-sm-2" ng-class="{'removeCursorPointer':cancelled<=0}"
+								ng-click="getTripDataByStatus('C');gotoElement('tripDataTable');headText='Cancelled';">
+								<div class="TripCircleDiv">
+									<div>Cancelled</div>
+									<div class="TripOuterCircle COutCircle circle">
+										<div class="inner cancelledInnerColor circle">
+											<div class="innerTxt">{{cancelled}}</div>
+										</div>
+									</div>
+									<div class="cancelledLine"></div>
+								</div>
+							</div>
+							<div class="col-sm-2" ng-class="{'removeCursorPointer':dropped<=0}"
+								ng-click="getTripDataByStatus('D');gotoElement('tripDataTable');headText='Dropped';">
+								<div class="TripCircleDiv">
+									<div>Dropped</div>
+									<div class="TripOuterCircle DrpOutCircle  circle">
+										<div class="inner droopedInnerColor circle">
+											<div class="innerTxt">{{dropped}}</div>
+										</div>
+									</div>
+									<div class="droppedLine"></div>
+								</div>
+							</div>
+							<div class="col-sm-2" ng-class="{'removeCursorPointer':completed<=0}"
+								ng-click="getTripDataByStatus('F');gotoElement('tripDataTable');headText='Completed';">
+								<div class="TripCircleDiv CompleteDiv">
+									<div class="CompDivTxt">Completed</div>
+									<div class="TripOuterCircle CompOutCircle circle">
+										<div class="inner completedInnerColor circle">
+											<div class="innerTxt CompTxt">{{completed}}</div>
+										</div>
+									</div>
+									<div class="completedLine"></div>
+								</div>
+							</div>
+						</div>
+						<div id="tripDataTable"></div>
+						<div class="row" ng-hide="hideTripTable">
+							<div class="col-sm-12">
+								<div class="table-container" ng-style="histcontentheight">
+									<table class="activeTableStyle">
+										<thead class="theadStyle tablethead">
+											<tr>
+												
+												<th> 
+													<div class="tableThickline" ng-style="headText == 'Scheduled' && {'background-color':'#008cdc'}  || headText == 'Running' && {'background-color':'#00af81'} || headText == 'Delayed' && {'background-color':'#665cbd'} || headText == 'Cancelled' && {'background-color':'#ee4423'} || headText == 'Dropped' && {'background-color':'#ffcc33'} || headText == 'Completed' && {'background-color':'#22446f'}"></div>
+												</th> <!--  == 'Scheduled'? {'background-color':'#008cdc'}:{'background-color':'#000000'} -->
+												<th><p class="tableThickTxt">{{headText}}</p></th>
+												<th></th>
+												<th></th>
+												<!-- <th><div>Activated</div></th> -->
+											</tr>
+											<tr>
+												<!-- <th><div>Slno</div></th> -->
+												<th></th> 
+												<th><div>Trip Name</div></th>
+												<th><div>Driver Name</div></th>
+												<th><div>Vehicle Number</div></th>
+											</tr>
+										</thead>
+										<tbody class="tbodyStyle">
+											<tr class="tbodytr tabletbodytr" ng-repeat="trip in tripData">
+												<td><p class="culomPad">{{$index+1}}</p></td>
+												<td><p>{{trip.trip_name}}</p></td>
+												<td><p>{{trip.driver_name}}</p></td>
+												<td><p>{{trip.vehicle_num}}</p></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div ng-show="isSet(3)" class="setBackgroundColor" ng-controller="dashboardDriverController"
+					ng-init="tripStatus='false'">
+					<div class="row">
+						<div class="col-sm-4">
+							<!-- <div id="TestDonut" style="width: 175px; height: 175px;></div>
+						</div>
+						<div class="col-sm-8">
+						</div> -->
+							<div class="trackerDiv">
+								<div>Total</div>
+								<div class="outer circle">
+									<div class="inner trackerInnerColor circle">
+										<div class="innerTxt circle">{{totalDrivers }}</div>
+									</div>
+								</div>
+								<div class="trackerBTxt">Drivers</div>
+							</div>
+						</div>
+						<div class="col-sm-8">
+							<div class="trackerDiv">
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="col-sm-5">
+											<div id="DriverContainer"
+												style="width: 200px; height: 200px;"></div>
+
+										</div>
+
+										<div class="col-sm-7 trackerProgessRow">
+											<div class="row" ng-click="tripStatus='false';gotoElement('driverDataTable')">
+												<div class="col-sm-8">
+													<p class="trackerProgessText">Available</p>
+													<div class="progress trackerProgess">
+														<div class="progress-bar DriverProBarAvail"
+															role="progressbar"
+															aria-valuenow="{{getPercentage(totalDrivers,availableDrivers)}}"
+															aria-valuemin="0" aria-valuemax="100"
+															ng-style="{width :(getPercentage(totalDrivers,availableDrivers)+'%')}">
+														</div>
+													</div>
+												</div>
+												<div class="col-sm-4">
+													<a class="dashbHover"><div class="driverProgessCountAvail">{{availableDrivers || '0'}}</div></a>
+												</div>
+											</div>
+											<div class="row" ng-click="tripStatus='true';gotoElement('driverDataTable')">
+												<div class="col-sm-8">
+													<p class="trackerProgessText">On Trip</p>
+													<div class="progress trackerProgess">
+														<div class="progress-bar DriverProBarOntrip"
+															role="progressbar"
+															aria-valuenow="{{getPercentage(totalDrivers,onTrip)}}"
+															aria-valuemin="0" aria-valuemax="100"
+															ng-style="{width :(getPercentage(totalDrivers,onTrip)+'%')}">
+														</div>
+													</div>
+												</div>
+												<div class="col-sm-4">
+													<a class="dashbHover"><div class="driverProgessCountOntrip">{{onTrip || '0'}}</div></a>
+												</div>
+											</div>
+
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="driverDataTable"></div>
+					<div class="row">
+						<div class="col-sm-12" ng-hide="(driverData  | filter :{ontrip:tripStatus}).length==0">
+							<div class="table-container" ng-style="histcontentheight">
+								<table class="activeTableStyle">
+									<thead class="theadStyle tablethead">
+										<tr>
+											<th>
+												<div class="tableThickline" ng-style="tripStatus =='false' && {'background-color':'#00af81'}  || tripStatus =='true' && {'background-color':'#43aae5'}"></div>
+												
+											</th>
+											<th colspan="2"><p class="tableThickTxt">{{tripStatus=='false'?'Available':'On Trip'}} Drivers</p></th>
+											<th></th>
+											<th></th>
+											<th></th>
+											<th></th>
+											
+											<!-- <th><div>Activated</div></th> -->
+										</tr>
+										<tr>
+											<th></th>
+											<th><div>Driver Image</div></th>
+											<th><div>Driver Name</div></th>
+											<th><div>Driver Contact</div></th>
+											<th><div>Licence Number</div></th>
+											<th><div>Trip Hours(today)</div></th>
+											<th><div>Vehicle Number</div></th>
+										</tr>
+									</thead>
+									<tbody class="tbodyStyle">
+
+										<tr class="tbodytr tabletbodytr" ng-repeat="driverdet in driverData | filter :{ontrip:tripStatus}">
+											<td>{{$index+1}}</td>
+											<td>
+												<p>
+													<img src="{{driverdet.image_src.length>0?driverdet.image_src:'../images/driver.png'}}" class="img-responsive img-circle img-thumbnail iconImageSm" />
+												</p>
+											</td>
+											<td><p>{{driverdet.name}}</p></td>
+											<td><p>{{driverdet.contact_no}}</p></td>
+											<td><p>{{driverdet.licence_id}}</p></td>
+											<td><p>{{driverdet.today_trip_hours}}</p></td>
+											<td><p>{{driverdet.curr_device.vehicle_num}}</p></td>
+										</tr>
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div ng-show="isSet(4)" class="setBackgroundColor" ng-controller="dashboardVehicleController">
+					<div class="row">
+						<div class="col-sm-4">
+							<!-- <div id="TestDonut" style="width: 175px; height: 175px;></div>
+						</div>
+						<div class="col-sm-8">
+						</div> -->
+							<div class="trackerDiv">
+								<div>On going Trip</div>
+								<div class="VehicleRings">
+									<div class="VehicleFirst-ring">
+										<div class="VehicleSecond-ring">
+											<div class="VehicleThird-ring">
+												<div class="ActiveRingsTxt">{{totalongoing_trip}}</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="trackerBTxt">vehicles</div>
+								<!-- <div class="trackerBTxt">Total vehicles</div> -->
+							</div>
+						</div>
+						<div class="col-sm-8">
+							<div class="trackerDiv">
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="col-sm-6">
+
+											<div>Covered Max Limit</div>
+											<div class="outer circle">
+												<div class="inner trackerInnerColor circle">
+													<div class="innerTxt circle">{{totalmax_lmt_cross}}</div>
+												</div>
+											</div>
+											<div class="trackerBTxt">Vehicles</div>
+										</div>
+
+										<div class="col-sm-6" align="left">
+											<div class="row">
+												<div class="vehicleCoverLimitTxt">{{currdate}}</div>
+											</div>
+											<div class="row">
+												<div class="">Max Limit</div>
+												<div class="vehicleCoverLimitTxt">3000</div>
+											</div>
+											<div class="row">
+												<div class="">Note</div>
+												<div class="vehicleCoverLimitTxt">Vehicles which
+													crossed the maximum monthly limit.It is calculated from the
+													1st of this month.</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row mar0">
+						<div class="col-sm-4"  ng-class="{'removeCursorPointer':totaloverspeed<=0}"
+							ng-click="getVehiclesDataByStatus('overspeed');gotoElement('vehicleDataTable');txtHead='OverSpeed';hideSpeed=false">
+							<div class="activeDiv">
+								<div class="row vehicleHoverClass">
+									<div class="col-sm-6">
+										<!-- <i class="fa fa-user fa-2x iconPos"></i> -->
+										<div class="">Overspeed</div>
+										<img alt="" src="../images/speedometer.png" class="vehIconWidth">
+									</div>
+									<div class="col-sm-6">
+										<div class="vehicleOverTxt">{{totaloverspeed}}</div>
+									</div>
+								</div>
+								<div class="overspeedLine"></div>
+							</div>
+						</div>
+
+						<div class="col-sm-4" ng-class="{'removeCursorPointer':totalgeofence<=0}"
+							ng-click="getVehiclesDataByStatus('geofence');gotoElement('vehicleDataTable');txtHead='Geofence';hideSpeed=true">
+							<div class="activeDiv">
+								<div class="row vehicleHoverClass">
+									<div class="col-sm-6">
+										<!-- <i class="fa fa-user fa-2x iconPos"></i> -->
+										<div class="">Geofence</div>
+										<img alt="" src="../images/geofence1.png" class="vehIconWidth">
+									</div>
+									<div class="col-sm-6">
+										<div class="vehicleOverTxt">{{totalgeofence}}</div>
+									</div>
+								</div>
+								<div class="GeofenceLine"></div>
+							</div>
+						</div>
+						<div class="col-sm-4" ng-class="{'removeCursorPointer':totalPanic<=0}"
+							ng-click="getVehiclesDataByStatus('panic');gotoElement('vehicleDataTable');txtHead='Panic';hideSpeed=true">
+							<div class="activeDiv">
+								<div class="row vehicleHoverClass">
+									<div class="col-sm-6">
+										<!-- <i class="fa fa-user fa-2x iconPos"></i> -->
+										<div class="">Panic</div>
+										<img alt="" src="../images/sosYellow.png" class="vehIconWidth">
+									</div>
+									<div class="col-sm-6">
+										<div class="vehicleOverTxt">{{totalPanic}}</div>
+									</div>
+								</div>
+								<div class="panicLine"></div>
+							</div>
+						</div>
+					</div>
+					<div id="vehicleDataTable"></div>
+					<div class="row" ng-hide="hideVehiclesTable">
+						<div class="col-sm-12">
+							<div class="table-container" ng-style="histcontentheight">
+								<table class="activeTableStyle">
+									<thead class="theadStyle tablethead"> 
+										<tr>
+											<th>
+												<div class="tableThickline" ng-style=" txtHead=='OverSpeed' && {'background-color':'#ec3f53'} || txtHead=='Geofence' && {'background-color':'#6668a5'}  || txtHead=='Panic' && {'background-color':'#ffcc33'} "></div>
+											</th>
+											<th><p class="tableThickTxt">{{txtHead}}</p></th>
+											<th></th>
+											<th></th>
+											<th></th>
+											<th ng-hide="hideSpeed"></th>
+											<!-- <th><div>Activated</div></th> -->
+										</tr>
+										<tr>
+											<th><div></div></th>  
+											<th><div>Device ID</div></th>
+											<th><div>Vehicle Number</div></th>											
+											<th ng-hide="hideSpeed"><div>Speed</div></th>
+											<th><div>Geo Location(click to see address)</div></th>
+											<th><div>Vehicle Model</div></th>
+										</tr>										
+									</thead>
+									<tbody class="tbodyStyle">										
+										<tr class="tbodytr tabletbodytr" ng-repeat="veh in vehiclesData.data">
+											<td><p class="culomPad">{{$index+1}}</p></td>
+											<td><p>{{veh.devid}}</p></td>
+											<td><p>{{veh.vehicle_num}}</p></td>
+											<td ng-hide="hideSpeed"><p>{{veh.Velocity}}</p></td>
+											<td><p><a href="" ng-click="givelt(veh.lat,veh.long);" class="link">Loaction</a></p></td>
+											<td><p>{{veh.vehicle_model}}</p></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

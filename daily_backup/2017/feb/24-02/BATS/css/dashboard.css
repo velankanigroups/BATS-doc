@@ -1,0 +1,16 @@
+.header_bats{background:#f8f8f8; padding:5px;height:75px;border-bottom:2px solid #ddd;}
+.custom_label{font-size:20px;padding:0px;margin-bottom:7px;}
+.manageUserH{
+        padding-top: 38px;
+}
+.managedivH {
+    border: none;
+}
+.managedivH>li.active>a {
+    border-radius: 12px 12px 0px 0px;
+}
+.borderLeft{border-left:3px solid #e0e4e5}
+
+.svgWidth{
+    width: 50%;
+}

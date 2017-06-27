@@ -1,0 +1,193 @@
+<div class="container-fluid" ng-init="initMap()">
+	<div class="row headerStyle">
+		<div class="col-sm-10">
+
+			<h4 class="search_heading">Search</h4>
+			<ul class="nav nav-tabs" style="margin-left: 20px;">
+				<li class="active"><a data-toggle="tab" href="#home">Driver</a></li>
+				<li><a data-toggle="tab" href="#menu1">Vehical</a></li>
+			</ul>
+		</div>
+		<div class="col-sm-2 borderLeft">
+				<div ng-include src="'/traveldesk/subMenu'"></div>
+			</div>
+
+	</div>
+
+
+
+	<div class="bgloading" ng-show="httpLoading">
+		<div class="bigbar">
+			<h1 class="titleClass">loading!...</h1>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-sm-12 pad0">
+			<div class="tab-content">
+
+				<div id="home" class="tab-pane fade in active pad0">
+					<div class="row Dropdownpadding" style="margin-top: 15px;">
+						<div class="col-sm-3" id="selectDriverSection">
+
+							<select id="selectDriver" class="form-control"
+								ng-model="trip.driver_id"
+								ng-options="driver.name for driver in driverList track by driver.driver_id">
+								<!-- <option>Select Driver</option> -->
+							</select>
+						</div>
+
+						<div class="col-sm-3">
+							<md-content> <md-datepicker
+								ng-model="trip.timeStamp" md-placeholder="Enter date"
+								ng-disabled="(trip.driver_id )? false:true"
+								md-max-date="todayDate" ng-change="fetchHistory(0)"></md-datepicker>
+							</md-content>
+
+						</div>
+						<div class="col-sm-5" ng-show="showTripDropDown">
+							<div id="selectTripSection" class="col-sm-12">
+								<select class="form-control" id="selectTrip" ng-model="tripName"
+									ng-options="tripDet.trip_name for tripDet in tripDetails track by tripDet.trip_id"
+									ng-change=showHistoryData(tripName)>
+								</select>
+							</div>
+
+						</div>
+					
+					</div>
+				</div>
+
+
+
+
+
+				<div id="menu1" class="tab-pane fade">
+					<div class="row Dropdownpadding" style="margin-top: 15px;">
+						<div class="col-sm-3" id="selectGroupSection">
+							<select id="selectGroup" class="form-control"
+								ng-model="trip.groupName"
+								ng-options="group.gname for group in groupList track by group.gid"
+								ng-change="fetchDevicelist(trip.groupName)">
+
+								<!-- <option>Select Driver</option> -->
+							</select>
+						</div>
+						<div class="col-sm-3" id="selectVehicleSection">
+							<select id="selectVehicle" class="form-control"
+								ng-model="trip.vehicle_num"
+								ng-options="device.vehicle_num for device in devlistObject track by device.devid">
+
+								<!--<option>Select Driver</option> -->
+							</select>
+						</div>
+						<div class="col-sm-3">
+							<md-content> <md-datepicker
+								ng-model="trip.timeStamp" md-placeholder="Enter date"
+								ng-disabled="(trip.vehicle_num)? false:true"
+								md-max-date="todayDate" ng-change="fetchHistory(1)"></md-datepicker>
+							</md-content>
+						</div>
+
+						<div class="col-sm-3" ng-show="showTripDropDown1">
+							<div id="selectTripSection" class="col-sm-12">
+								<select class="form-control" id="selectTrip" ng-model="tripName"
+									ng-options="tripDet.trip_name for tripDet in tripDetails track by tripDet.trip_id"
+									ng-change=showHistoryData(tripName)>
+								</select>
+							</div>
+
+						</div>
+						
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		
+		<!-- display history section -->
+		<div class="row mb10">
+			<div class="col-sm-12">
+				<div id="history_map" style="height:74vh;width:100%;"></div>
+			</div>
+		</div>
+		<div class="row mb10">
+			<div class="col-sm-12" align="center">
+				<a id="showHistoryData" style="z-index: 900;"
+					ng-class="{bounce:startBouncing}" ng-show="showUpBtn"
+					ng-click="stopBouncing()" class='modalButton '
+					data-direction='bottom' href='#'><label style="font-style: italic;">i</label></a>
+			</div>
+		</div>
+		<div id="historyModal" class="modal fade marginFormodal" role="dialog">
+			<div class="modal-dialog modal-lg marginFormodal">
+				<div class="modal-content">
+					<div class="modal-header noStyle">
+						<button type="button" class="close " data-dismiss="modal">&times;</button>
+
+
+					</div>
+
+					<div class="modal-body bodymodel">
+						<div class="row ">
+							<div class="col-sm-12">
+								<div class="row">
+									<div class="col-sm-3">
+										<label class="styleFormodelCOntent">Driver</label>
+										<div class="row">
+											<div class="col-sm-4" ng-hide="imageUploading">
+												<img
+													src="{{tripData.image_src.length>0?tripData.image_src:'../images/driver.png'}}"
+													class="img-responsive img-thumbnail fixWidthHeight"
+													onerror="this.onerror=null;this.src='../images/404.png';"
+													alt="alternative text">
+											</div>
+											<div class="col-sm-8">
+												<p>{{tripData.driver_name}}</p>
+												<p>{{tripData.contact_no}}</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-2">
+										<label class="styleFormodelCOntent">Status</label>
+										<p>{{getStatus(tripData.status)}}</p>
+									</div>
+									<div class="col-sm-2">
+										<label class="styleFormodelCOntent">Passanger</label>
+										<div ng-repeat="customer in tripData.customers">
+											<p>{{customer.name}}</p>
+											<p>{{customer.cn}}</p>
+										</div>
+									</div>
+
+									<div class="col-sm-4">
+										<label class="styleFormodelCOntent">Trip</label>
+										<div class="row">
+											<div class="col-sm-6">Approx.Start time:</div>
+											<div class="col-sm-6">{{getTimeFormat(tripData.apprx_start_time)}}</div>
+										</div>
+										<br/>
+										<div class="row">
+											<div class="col-sm-6">Approx.End time:</div>
+											<div class="col-sm-6">{{getTimeFormat(tripData.apprx_end_time)}}</div>
+										</div><br/>
+										<div class="row">
+											<div class="col-sm-6">Destination</div>
+											<div class="col-sm-6">{{tripData.destination}}</div>
+										</div>
+									</div>
+								</div>
+							
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- display history section -->
+	</div>
+</div>
+</div>

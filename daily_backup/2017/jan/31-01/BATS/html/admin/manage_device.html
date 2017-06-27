@@ -1,0 +1,402 @@
+<div class="row headerStyle" ng-init="listDevices()">
+	<div class="col-sm-10">
+
+		<h4 class="search_heading">Search Group</h4>
+		<div class="row Dropdownpadding">
+			<div class="col-sm-3">
+				<div class="country">
+					<select ng-model="selectedcountry" class="search_width"
+						ng-options="group.country as group.country for group in glist | unique:'country'">
+						<option value="">Select Country</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="country">
+					<select ng-model="selectedstate" class="search_width"
+						ng-options="group.state as group.state for group in glist | unique:'state' | filter:{country:selectedcountry}">
+						<option value="">Select State</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="country">
+					<select ng-model="selectedgnames" class="search_width"
+						ng-options="group.gname as group.gname for group in glist | filter:{country:selectedcountry,state:selectedstate}">
+						<option value="">Select Group</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<button type="button" class="btn btn-primary btn-sm"
+					ng-click="showCreateBtn()" data-toggle="modal"
+					data-target="#createGroupModal">Create Group</button>
+			</div>
+		</div>
+
+	</div>
+	<div class="col-sm-2">
+		<!-- <div id="includedContent"></div> -->
+		<!-- <label>Logout Session</label> -->
+	</div>
+
+</div>
+
+<div class="bgloading" ng-show="httpLoading">
+	<div class="bigbar">
+		<h1 class="titleClass">loading!...</h1>
+	</div>
+</div>
+<div class="row device_heading" ng-init="content=1">
+	<div class="col-sm-6">
+		<input id="allocated" type="radio" name="content" ng-model="content"
+			value="1"> <label for="allocated">Allocated Devices</label>
+	</div>
+	<div class="col-sm-6">
+		<input id="un_allocated" type="radio" name="content"
+			ng-model="content" value="2"> <label for="un_allocated">Un-Allocated
+			Devices</label>
+	</div>
+</div>
+<div class="col-sm-10">
+
+	<!-- <h2 class="heading_title" ng-init="listDevices()">Manage Device</h2>
+
+	<div class="col-sm-12 search_heading">
+
+		<div class="row device_heading" ng-init="content=1">
+			<div class="col-sm-6">
+				<input id="allocated" type="radio" name="content" ng-model="content"
+					value="1"> <label for="allocated">Allocated Devices</label>
+			</div>
+			<div class="col-sm-6">
+				<input id="un_allocated" type="radio" name="content"
+					ng-model="content" value="2"> <label for="un_allocated">Un-Allocated
+					Devices</label>
+			</div>
+		</div>
+	</div>
+ -->
+	<div class="search_device_results">
+
+		<div class="wrapper">
+			<div ng-show="content == '1'">
+				<div class="row margin40">
+					<div class="col-sm-3" id="clearTextDeviceStatus" align="center">
+						<select id="selectStatus" class="form-control" name="statusList"
+							ng-model="statusId" ng-change="listDevice()">
+							<option value="" selected disabled class="disable_select">-
+								- - Device Staus - -</option>
+							<option value="Activated">Activated Devices</option>
+							<option value="Inactive">Inactive Devices</option>
+							<option value="Pending">Pending Devices</option>
+						</select>
+					</div>
+					<div class="col-sm-4" id="clearTextGroup" align="center">
+						<select id="selectGroup" class="form-control" name="groupList"
+							ng-model="groupname" ng-change="listDevice(groupname)">
+							<option ng-if="groupList.length" value="" selected disabled
+								class="disable_select">-- Select Group - -</option>
+							<option ng-if="!groupList.length" selected disabled>No
+								Group Available</option>
+							<option ng-repeat="option in groupList | unique:'gid'"
+								value="{{ option.gid }}">{{option.gname}}</option>
+						</select>
+					</div>
+					<div class="col-sm-4" id="clearTextDevice" align="center">
+						<select id="selectDevice" class="form-control" name="deviceList"
+							ng-model="deviceId" ng-change="sortDeviceId()">
+							<option ng-if="deviceList.length" value="" selected disabled
+								class="disable_select">-- Select Vehicle No/Device --</option>
+							<option ng-if="!deviceList.length" selected disabled>No
+								Device Available</option>
+							<option ng-repeat="option in deviceList" value="{{ option }}">{{option}}</option>
+						</select>
+					</div>
+					<div class="col-sm-1" align="center">
+						<label>Select All</label>
+						<!-- <input type="checkbox" id="chkSelectAll"
+							ng-model="selectedAll" /> -->
+						<input type="checkbox" ng-model="master" ng-change="isSelectAll()">
+					</div>
+				</div>
+				<div ng-hide="noDevicesAllocated" class="filteredDevice paddingTB05">
+					<div class="panel panel-default panel-bottom"
+						ng-repeat="devicedet in allocated | filter:groupname | filter:deviceId | filter:statusId">
+						<div class="panel-heading checkDevice">
+							<div class="row">
+								<div class="col-sm-2">
+									<label>Device Status</label>
+									<!-- <p ng-class="{dev_active:green,dev_inactive:red,dev_pending:grey}">{{getStatus(devicedet.status)}}</p> -->
+									<p
+										ng-class="{dev_inactive:devicedet.status==='Inactive',dev_pending:devicedet.status==='Pending',dev_active:devicedet.status==='Activated'}"
+										class="paddingTB05">
+										{{devicedet.status}} <img src="../../images/loading_icon.gif"
+											ng-show="{{devicedet.status==='Pending'?true:false}}"
+											style="width: 25px; height: 25px" />
+									</p>
+								</div>
+								<div class="col-sm-2">
+									<label>Group Name:</label>
+									<p class="paddingTB05">{{devicedet.gname}}</p>
+								</div>
+								<div class="col-sm-2">
+									<label>Device Id:</label>
+									<p class="paddingTB05">{{devicedet.devid}}</p>
+								</div>
+								<div class="col-sm-2">
+									<label>Vehicle No</label>
+									<p class="paddingTB05">{{devicedet.vehicle_num}}</p>
+								</div>
+								<div class="col-sm-2">
+									<label>Device SIM:</label>
+									<p
+										ng-class="{{devicedet.device_sim_cn.length!=0?'{normalText:devicedet.device_sim_cn}':'{redText:true}'}}"
+										class="paddingTB05">{{devicedet.device_sim_cn.length!=0?devicedet.device_sim_cn:"device
+										sim number missing"}}</p>
+								</div>
+								<div class="col-sm-2 paddingTB05" align="center"
+									style="width: 7.666667%">
+									<a href="#" class="edit_icon_device"
+										ng-click="submitUpdateDevice(devicedet.devid)"
+										data-toggle="modal" data-target="#updateDeviceModal"><i
+										class="fa fa-pencil"></i></a>
+								</div>
+								<div class="col-sm-1" align="right">
+									<!-- ng-click="selParticularDevice(devicedet.devid,activecheck)" -->
+									<input type="checkbox" id="{{devicedet.devid}}"
+										ng-model="devicedet.selected"
+										ng-change="isLabelChecked(devicedet.devid)"
+										ng-disabled="getDisabledByStatus(devicedet.status) || getDisabledBySimno(devicedet.device_sim_cn)" />
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<h1 ng-if="deviceNotAvailable">No device Available for this
+						selection !...</h1>
+				</div>
+				<h2 ng-show="noDevicesAllocated">No Devices Allocated</h2>
+			</div>
+
+			<div ng-show="content == '2'">
+				<div class="margin40">
+					<div class="panel panel-default" ng-repeat="dev_un in un_allocated">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-sm-4">
+									<label>Device Id:</label>
+									<p>{{dev_un.devid}}</p>
+								</div>
+								<!-- <div class="col-sm-4">
+									<label>Vehicle No</label>
+									<p>{{dev_un.vehicle_num}}</p>
+								</div>
+								<div class="col-sm-4">
+									<label>Vehicle Model</label>
+									<p>{{dev_un.vehicle_model}}</p>
+								</div> -->
+							</div>
+						</div>
+					</div>
+					<h2 ng-show="noDevicesUnAllocated">No Devices Un-Allocated</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row paddingTB10">
+		<div class="col-sm-12" align="center">
+			<button class="btn btn-lg btn-primary" ng-click="sendActivation()">Activate
+				Selected Devices</button>
+		</div>
+	</div>
+
+</div>
+<!--==================== Create & Update Modal ===================-->
+<div class="modal fade" id="updateDeviceModal" role="dialog"
+	data-backdrop="static">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="iconSection" align="center">
+				<div class="userIcon">
+					<i class="fa fa-user fa-3x"></i>
+				</div>
+			</div>
+			<div class="modal-body">
+				<form name="updateDeviceForm" class="form formInput">
+					<div class="col-sm-2 col-sm-offset-10" align="right">
+						<span class="closeIcon" data-direction="left" data-dismiss="modal"
+							aria-hidden="true" ng-click="reset()">&times;</span>
+					</div>
+					<h1 class="titleHead">Modify/Update Device</h1>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label ng-show="device.devid" class="floatlabeltxt show-hide">Device
+											Id</label> <input type="text" ng-model="device.devid" name="devid"
+											class="form-control floatlabel" placeholder="Device Id"
+											ng-readonly="true" />
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group"
+										ng-class="{ 'has-error' : updateDeviceForm.devtype.$invalid && !updateDeviceForm.devtype.$pristine }">
+										<label ng-show="device.devtype"
+											class="floatlabeltxt show-hide">Device Type</label>
+										<!-- <input type="text" ng-model="device.devtype" name="devtype"
+											class="form-control" placeholder="Device Type"
+											required /> -->
+										{{device.values.devtype}} <select ng-model="device.devtype"
+											name="devtype"
+											class="form-control floatlabel floatlabel_select" required>
+											<option selected disabled value="">- - Select Device
+												Type - -</option>
+											<option>bike</option>
+											<option>bus</option>
+											<option>car</option>
+											<option>truck</option>
+										</select>
+										<p
+											ng-show="updateDeviceForm.devtype.$invalid && !updateDeviceForm.devtype.$pristine"
+											class="help-block">Device Type is required.</p>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group floatlabel"
+										ng-class="{ 'has-error' : updateDeviceForm.device_sim_cn.$invalid && !updateDeviceForm.device_sim_cn.$pristine }">
+										<label ng-show="device.device_sim_cn"
+											class="floatlabeltxt show-hide">Device SIM Number</label>
+										<div class="row">
+											<div class="col-sm-12">
+												<input type="text" ng-model="device.device_sim_cn"
+													numbers-only name="device_sim_cn" class="form-control"
+													string-to-number placeholder="Enter Device SIM number"
+													ng-minlength="10" ng-maxlength="10" required
+													ng-disabled="device.device_sim_cn.length>0" /> <span
+													class="warningText" ng-if="!device.device_sim_cn.length"><strong
+													class="fs24px">&#9888;</strong> Enter correct sim number
+													else close and re-open modal dialog</span>
+											</div>
+										</div>
+										<p
+											ng-show="updateDeviceForm.device_sim_cn.$invalid && !updateDeviceForm.device_sim_cn.$pristine"
+											class="help-block">Enter Valid Mobile Number.</p>
+										<p
+											ng-show="updateDeviceForm.device_sim_cn.$error.minlength && updateDeviceForm.device_sim_cn.$error.maxlength"
+											class="help-block">Mobile Number max 10 numbers.</p>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group"
+										ng-class="{ 'has-error' : updateDeviceForm.sr_num.$invalid && !updateDeviceForm.sr_num.$pristine }">
+										<label ng-show="device.sr_num" class="floatlabeltxt show-hide">Serial
+											Number</label> <input type="text" ng-model="device.sr_num"
+											name="sr_num" class="form-control"
+											placeholder="Serial Number" readonly required />
+										<p
+											ng-show="updateDeviceForm.sr_num.$invalid && !updateDeviceForm.sr_num.$pristine"
+											class="help-block">Serial Number is required.</p>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group"
+										ng-class="{ 'has-error' : updateDeviceForm.vehicle_num.$invalid && !updateDeviceForm.vehicle_num.$pristine }">
+										<label ng-show="device.vehicle_num"
+											class="floatlabeltxt show-hide">Vehicle Number</label> <input
+											type="text" ng-model="device.vehicle_num" name="vehicle_num"
+											ng-blur="verifyVehicleNo(device.vehicle_num)"
+											class="form-control" placeholder="Vehicle Number" required />
+										<p
+											ng-show="updateDeviceForm.vehicle_num.$invalid && !updateDeviceForm.vehicle_num.$pristine"
+											class="help-block">Vehicle Number is required.</p>
+										<span class="help-block chk_frm_server" ng-show="error_vehno">Vechile
+											number is already associated</span>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<!-- Vehicle Model field added 08/08/2016 for cp release-->
+									<div class="form-group">
+										<label ng-show="device.vehicle_model"
+											class="floatlabeltxt show-hide">Vehicle Model</label> <input
+											type="text" ng-model="device.vehicle_model"
+											name="vehicle_model" class="form-control"
+											placeholder="Vehicle Model" required />
+										<p
+											ng-show="updateDeviceForm.vehicle_model.$invalid && !updateDeviceForm.vehicle_model.$pristine">Vehicle
+											Model is Required</p>
+									</div>
+									<!-- ./Vehicle Model field added 08/08/2016 for cp release -->
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group"
+										ng-class="{ 'has-error' : updateDeviceForm.driver_name.$invalid && !updateDeviceForm.driver_name.$pristine }">
+										<label ng-show="device.driver_name"
+											class="floatlabeltxt show-hide">Driver Name</label> <input
+											type="text" ng-model="device.driver_name" name="driver_name"
+											class="form-control" placeholder="Driver Name" required />
+										<p
+											ng-show="updateDeviceForm.driver_name.$invalid && !updateDeviceForm.driver_name.$pristine"
+											class="help-block">Driver Name is required.</p>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group"
+										ng-class="{ 'has-error' : updateDeviceForm.driver_licence.$invalid && !updateDeviceForm.driver_licence.$pristine }">
+										<label ng-show="device.driver_licence"
+											class="floatlabeltxt show-hide">Driver License</label> <input
+											type="text" ng-model="device.driver_licence"
+											name="driver_licence" class="form-control"
+											ng-blur="verifyDL(device.driver_licence)"
+											placeholder="Driver License" required />
+										<p
+											ng-show="updateDeviceForm.driver_licence.$invalid && !updateDeviceForm.driver_licence.$pristine"
+											class="help-block">Driver License is required.</p>
+										<span class="help-block chk_frm_server" ng-show="error_dlno">Driver
+											License is already associated</span>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group floatlabel"
+										ng-class="{ 'has-error' : updateDeviceForm.desc.$invalid && !updateDeviceForm.desc.$pristine }">
+										<label ng-show="device.desc" class="floatlabeltxt show-hide">Description</label>
+										<textarea ng-model="device.desc" name="desc"
+											class="form-control" placeholder="Description" required></textarea>
+										<p
+											ng-show="updateDeviceForm.desc.$invalid && !updateDeviceForm.desc.$pristine"
+											class="help-block">Description is required.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<div class="row">
+									<div class="col-sm-6 col-sm-offset-3" align="center">
+										<button class="btn btn-primary"
+											ng-disabled="updateDeviceForm.$invalid"
+											ng-show="updateDeviceForm.$valid"
+											ng-click="submitUpdateDeviceForm()">Update/Modify</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
